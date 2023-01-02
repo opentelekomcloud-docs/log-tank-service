@@ -35,7 +35,7 @@ Search Syntax and Examples
    +===================================+==============================================================================================================================================+
    | Exact search by keyword           | LTS searches for logs containing the exact keyword (case-sensitive) that you specify. A keyword is the word between two adjacent delimiters. |
    |                                   |                                                                                                                                              |
-   |                                   | You can add an asterisk (*) after a keyword, for example, **error\***, if you are not familiar with delimiters.                              |
+   |                                   | You can add an asterisk (``*``) after a keyword, for example, **error\***, if you are not familiar with delimiters.                          |
    +-----------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------+
    | Exact search by phrase            | LTS searches for logs containing the exact phrase (case-sensitive) that you specify.                                                         |
    +-----------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------+
@@ -47,7 +47,7 @@ Search Syntax and Examples
    +-----------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------+
    | NOT                               | Logs that contain the keyword after **NOT** are excluded.                                                                                    |
    +-----------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------+
-   | \*                                | Fuzzy search. The asterisk (*) can only be after a keyword to replace an unspecified number of characters.                                   |
+   | \*                                | Fuzzy search. The asterisk (``*``) can only be after a keyword to replace an unspecified number of characters.                               |
    +-----------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------+
    | ?                                 | Fuzzy search. The question mark (?) can be put in the middle or at the end of a keyword to replace a character.                              |
    +-----------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------+
