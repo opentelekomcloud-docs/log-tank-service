@@ -15,4 +15,4 @@ Public Parameters
 
    status_code
    error_code
-   obtaining_the_accountid,_project_id,_log_group_id,_and_log_stream_id
+   obtaining_the_accountid_project_id_log_group_id_and_log_stream_id
