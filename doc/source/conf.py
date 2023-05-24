@@ -19,6 +19,7 @@ import sys
 
 extensions = [
     'otcdocstheme',
+    'otc_sphinx_directives'
 ]
 
 otcdocs_auto_name = False
@@ -29,13 +30,13 @@ otcdocs_repo_name = 'opentelekomcloud-docs/log-tank-service'
 # Those variables are required for edit/bug links
 
 # Those variables are needed for indexing into OpenSearch
-otcdocs_doc_environment = 'public'
-otcdocs_doc_link = '/log-tank-service/umn/'
-otcdocs_doc_title = 'User Guide'
-otcdocs_doc_type = 'umn'
-otcdocs_service_title = 'Log Tank Service'
+otcdocs_doc_environment = ''
+otcdocs_doc_link = ''
+otcdocs_doc_title = ''
+otcdocs_doc_type = ''
+otcdocs_service_title = ''
 otcdocs_service_type = 'lts'
-otcdocs_service_category = 'md'
+otcdocs_service_category = ''
 
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
@@ -90,7 +91,7 @@ html_theme_options = {
 # The name for this set of Sphinx documents.  If None, it defaults to
 # "<project> v<release> documentation".
 
-html_title = "Log Tank Service - User Guide"
+html_title = "Log Tank Service - Service Based View"
 
 
 # Add any paths that contain custom static files (such as style sheets) here,
@@ -102,9 +103,4 @@ html_static_path = ['_static']
 html_copy_source = False
 
 # -- Options for PDF output --------------------------------------------------
-latex_documents = [
-    ('index',
-     'lts-umn.tex',
-     u'Log Tank Service - User Guide',
-     u'OpenTelekomCloud', 'manual'),
-]
+latex_documents = []
