@@ -33,9 +33,9 @@ otcdocs_doc_environment = 'public'
 otcdocs_doc_link = '/log-tank-service/umn/'
 otcdocs_doc_title = 'User Guide'
 otcdocs_doc_type = 'umn'
+otcdocs_service_category = 'md'
 otcdocs_service_title = 'Log Tank Service'
 otcdocs_service_type = 'lts'
-otcdocs_service_category = 'md'
 
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
