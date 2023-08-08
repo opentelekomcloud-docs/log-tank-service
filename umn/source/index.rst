@@ -8,8 +8,12 @@ Log Tank Service - User Guide
    service_overview/index
    getting_started/index
    log_management/index
-   log_view/index
-   log_transfer
-   agent_management/index
-   appendixes/index
+   log_ingestion/index
+   host_management/index
+   log_search_and_view/index
+   log_analysis/index
+   log_transfer/index
+   configuration_center/index
+   permissions_management
+   faqs/index
    change_history

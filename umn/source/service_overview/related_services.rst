@@ -33,4 +33,4 @@ You can record attack logs and access logs of Web Application Firewall (WAF) in 
 ELB
 ---
 
-You can ingest access logs of Elastic Load Balance (ELB) to a log stream of a log group in LTS. Then you can check the access logs for details on HTTP and HTTPS requests sent to your load balancer and perform log analysis.
+You can ingest access logs of Elastic Load Balance (ELB) to a log stream of a log group in LTS. Then you can check the access logs to view details about HTTP and HTTPS requests sent to layer 7 load balancers and perform log analysis.

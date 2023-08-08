@@ -58,25 +58,27 @@ You can perform the following operations to enable CTS and create a tracker.
 Configuring the Tracker
 -----------------------
 
-You can perform the following operations to enable the trace analysis function, thus reporting CTS traces to LTS.
+Follow the directions below to enable transfer to LTS so traces can be reported to LTS:
 
 #. On the **Tracker** page, click **Configure** in the **Operation** column.
 
    The **Configure Tracker** page is displayed.
 
-#. On the displayed page, enable **Trace Analysis**.
+#. Enable **Transfer to LTS**.
 
 
-   .. figure:: /_static/images/en-us_image_0224007684.png
+   .. figure:: /_static/images/en-us_image_0000001427369668.png
       :alt: **Figure 3** Configuring a tracker
 
       **Figure 3** Configuring a tracker
 
    .. note::
 
-      During CTS trace reporting, the system automatically creates a log group and a log topic on the LTS console.
+      A log group and a log stream will be created automatically for the reported traces on the LTS console.
 
-#. Click **OK**.
+#. Click **Next** to preview the created tracker.
+
+#. Click **Configure**.
 
 Viewing Logs in Real Time
 -------------------------
@@ -85,25 +87,19 @@ You can perform the following operations to view logs reported by CTS:
 
 #. Click **Service List** and choose **Management & Deployment** > **Log Tank Service**.
 
-#. In the log group list, click the name of the target log group.
+#. In the log group list, click |image1| on the left of a log group name. The log stream list is displayed.
 
-#. In the log topic list, locate the target log topic and click **View** in the **Operation** column.
+#. Click Log Stream to go to the log details and view real-time logs.
 
 
-   .. figure:: /_static/images/en-us_image_0224007615.png
+   .. figure:: /_static/images/en-us_image_0000001424778604.png
       :alt: **Figure 4** Viewing logs in real time
 
       **Figure 4** Viewing logs in real time
 
-   Logs are reported to LTS every 10 minutes. In the log display area, you may wait for at most 10 minutes to view the logs.
+   Logs are reported to LTS once every five seconds. You may wait for at most five seconds before the logs are displayed.
 
-   In addition, you can customize log display by clicking **Clear**, **Pause**, or **Close** in the upper right corner.
-
-
-   .. figure:: /_static/images/en-us_image_0224007642.png
-      :alt: **Figure 5** Log display area
-
-      **Figure 5** Log display area
+   You can control log display by clicking **Clear** or **Pause** in the upper right corner.
 
    -  **Clear**: clears all logs that are displayed in the log display area.
 
@@ -111,4 +107,4 @@ You can perform the following operations to view logs reported by CTS:
 
       After you click **Pause**, the button changes to **Continue**. You can click **Continue** to resume the log display.
 
-   -  **Close**: closes the real-time log view page. You are redirected to the **Log Topic List** page.
+.. |image1| image:: /_static/images/en-us_image_0000001424625748.png
