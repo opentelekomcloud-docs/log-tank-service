@@ -10,42 +10,40 @@ Scenarios
 
 A Virtual Private Cloud (VPC) flow log captures information about the traffic going to and from your VPC. You can use flow logs to monitor network traffic, analyze network attacks, and determine whether security groups and firewall rules need to be modified.
 
-To obtain traffic details of VPC Network Interface Cards (NICs), you can enable Log Tank Service (LTS) and view logs about the NICs on the LTS console.
+You can obtain traffic details of VPC Network Interface Cards (NICs) from their logs on the LTS console.
 
-This section describes how to create a VPC flow log to report logs to LTS.
+This section describes how to configure VPC flow log reporting.
 
 Constraints
 -----------
 
 -  A VPC is available.
--  Currently, only C3, CC3, and P2 ECSs are supported.
+-  Currently, only C3, M3, and S2 ECSs are supported.
 
 Operation Process
 -----------------
 
 .. _lts_01_0009__en-us_topic_0224007674_fig14917812017:
 
-.. figure:: /_static/images/en-us_image_0224007643.png
+.. figure:: /_static/images/en-us_image_0000001474342201.png
    :alt: **Figure 1** Flowchart
 
    **Figure 1** Flowchart
 
 Operations in :ref:`Figure 1 <lts_01_0009__en-us_topic_0224007674_fig14917812017>` are performed on different consoles:
 
--  LTS console: Creating a log group and creating a log topic.
--  VPC console: Creating a VPC flow log and viewing the flow log.
+-  Create log groups and log streams on the LTS console.
+-  Create and view VPC flow logs on the VPC console.
 
 Creating a Log Group
 --------------------
 
 #. Log in to the management console.
 
-#. In the upper left corner of the management console, select the target region and project.
-
 #. Click **Service List** and choose **Management & Deployment** > **Log Tank Service**.
 
 
-   .. figure:: /_static/images/en-us_image_0224007663.png
+   .. figure:: /_static/images/en-us_image_0000001565005278.png
       :alt: **Figure 2** Log management
 
       **Figure 2** Log management
@@ -53,7 +51,7 @@ Creating a Log Group
 #. On the **Log Management** page, click **Create Log Group**.
 
 
-   .. figure:: /_static/images/en-us_image_0224007629.png
+   .. figure:: /_static/images/en-us_image_0000001424573742.png
       :alt: **Figure 3** Creating a log group
 
       **Figure 3** Creating a log group
@@ -65,55 +63,54 @@ Creating a Log Group
       +------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------+
       | Parameter              | Description                                                                                                                                                                                                 | Example Value         |
       +========================+=============================================================================================================================================================================================================+=======================+
-      | Log Group Name         | Specifies the log group name which must be globally unique. The configuration rules are as follows:                                                                                                         | lts-group-wule        |
+      | Log Group Name         | Specifies the log group name which must be globally unique. The configuration rules are as follows:                                                                                                         | lts-group-7hjg        |
       |                        |                                                                                                                                                                                                             |                       |
       |                        | -  Must be a string of 1 to 64 characters.                                                                                                                                                                  |                       |
-      |                        | -  Only allows uppercase and lowercase letters, digits, underscores (_), hyphens (-), and periods (.). The name cannot start or end with a period.                                                          |                       |
+      |                        | -  Only allows uppercase and lowercase letters, digits, underscores (_), hyphens (-), and periods (.). The name cannot start with a period or underscore, or end with a period.                             |                       |
       +------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------+
       | Log Retention Duration | Specifies the time period, in the unit of days, of storing logs in the LTS database. The default retention period for logs is seven days. Any logs stored longer than the retention period will be deleted. | 7                     |
       +------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------+
 
 #. Click **OK**.
 
-Creating a Log Topic
---------------------
+Creating a Log Stream
+---------------------
 
-To create a log topic in the log group, perform the following operations:
+To create a log stream in the log group, perform the following operations:
 
 #. Log in to the management console.
-#. In the upper left corner of the management console, select the target region and project.
 #. Click **Service List** and choose **Management & Deployment** > **Log Tank Service**.
 
-4. In the log group list, click the name of the target log group.
+3. Click |image1| next to the log group name to expand the log stream list.
 
 
-   .. figure:: /_static/images/en-us_image_0224007683.png
-      :alt: **Figure 4** Log topic list
+   .. figure:: /_static/images/en-us_image_0000001424736642.png
+      :alt: **Figure 4** Log stream list
 
-      **Figure 4** Log topic list
+      **Figure 4** Log stream list
 
-5. On the displayed page, click **Create Log Topic**.
+4. Click **Create Log Stream**.
 
 
-   .. figure:: /_static/images/en-us_image_0224007618.png
-      :alt: **Figure 5** Creating a log topic
+   .. figure:: /_static/images/en-us_image_0000001474096881.png
+      :alt: **Figure 5** Creating a log stream
 
-      **Figure 5** Creating a log topic
+      **Figure 5** Creating a log stream
 
-6. On the displayed page, enter a name.
+5. On the displayed page, enter a log stream name.
 
-   .. table:: **Table 2** Parameter description
+   .. table:: **Table 2** Log stream parameters
 
-      +-----------------------+----------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------+
-      | Parameter             | Description                                                                                                                                        | Example Value         |
-      +=======================+====================================================================================================================================================+=======================+
-      | Log Topic Name        | Specifies the log topic name. The name must be unique in a log group. The configuration rules are as follows:                                      | LogTopic1             |
-      |                       |                                                                                                                                                    |                       |
-      |                       | -  Must be a string of 1 to 64 characters.                                                                                                         |                       |
-      |                       | -  Only allows uppercase and lowercase letters, digits, underscores (_), hyphens (-), and periods (.). The name cannot start or end with a period. |                       |
-      +-----------------------+----------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------+
+      +-----------------------+--------------------------------------------------------------------------------------------+-----------------------+
+      | Parameter             | Description                                                                                | Example Value         |
+      +=======================+============================================================================================+=======================+
+      | Log Stream Name       | The log stream name must be unique in a log group. The configuration rules are as follows: | lts-topic-ncwm        |
+      |                       |                                                                                            |                       |
+      |                       | -  Must be a string of 1 to 64 characters.                                                 |                       |
+      |                       | -  Cannot start with a period (.) or underscore (_) or end with a period (.).              |                       |
+      +-----------------------+--------------------------------------------------------------------------------------------+-----------------------+
 
-7. Click **OK**.
+6. Click **OK**. The log stream is created.
 
 Creating a VPC Flow Log
 -----------------------
@@ -129,7 +126,7 @@ Creating a VPC Flow Log
 #. In the upper right corner, click **Create VPC Flow Log**. On the displayed page, configure parameters as prompted.
 
 
-   .. figure:: /_static/images/en-us_image_0224007690.png
+   .. figure:: /_static/images/en-us_image_0000001424467768.png
       :alt: **Figure 6** Creating a VPC flow log
 
       **Figure 6** Creating a VPC flow log
@@ -143,7 +140,7 @@ Creating a VPC Flow Log
       |                       |                                                                                                                                                                                             |                       |
       |                       | The VPC flow log name can contain a maximum of 64 characters, which may consist of letters, digits, underscores (_), hyphens (-), and periods (.). The name cannot contain spaces.          |                       |
       +-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------+
-      | Resource Type         | Specifies the type of resources whose traffic is to be logged. Currently, **Resource Type** can only be **NIC**.                                                                            | NIC                   |
+      | Resource Type         | Specifies the resource type whose traffic is to be logged. You can select **NIC**, **Subnet**, or **VPC**.                                                                                  | NIC                   |
       +-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------+
       | Select NIC            | Specifies the specific NIC whose traffic is to be logged. You can select only one NIC.                                                                                                      | ``-``                 |
       +-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------+
@@ -153,7 +150,7 @@ Creating a VPC Flow Log
       +-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------+
       | Log Group             | Specifies the log group created in LTS.                                                                                                                                                     | lts-group-wule        |
       +-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------+
-      | Log Topic             | Specifies the log topic created in LTS.                                                                                                                                                     | LogTopic1             |
+      | Log Topic             | Specifies the log stream created in LTS.                                                                                                                                                    | LogTopic1             |
       +-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------+
       | Description           | Provides supplementary information about the VPC flow log. This parameter is optional.                                                                                                      | ``-``                 |
       |                       |                                                                                                                                                                                             |                       |
@@ -260,4 +257,6 @@ The capture window is approximately 10 minutes, which indicates that a flow log 
       |                       | -  **SKIPDATA**: Some flow log records were skipped during the capture window. This may be caused by an internal capacity constraint or an internal error. |                                      |
       +-----------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------+
 
-   You can enter a keyword on the log topic details page on the LTS console to search for flow log records.
+   You can search for flow log records by keyword on the log stream details page on the LTS console.
+
+.. |image1| image:: /_static/images/en-us_image_0000001424418870.png
