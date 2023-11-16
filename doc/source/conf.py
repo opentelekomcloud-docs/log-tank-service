@@ -34,9 +34,11 @@ otcdocs_doc_environment = ''
 otcdocs_doc_link = ''
 otcdocs_doc_title = ''
 otcdocs_doc_type = ''
-otcdocs_service_title = ''
+otcdocs_service_category = 'md'
+otcdocs_service_title = 'Log Tank Service'
 otcdocs_service_type = 'lts'
-otcdocs_service_category = ''
+otcdocs_search_environment = 'hc_de'
+otcdocs_search_url = "https://opensearch.eco.tsi-dev.otc-service.com/"
 
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
