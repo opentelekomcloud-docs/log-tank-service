@@ -5,12 +5,18 @@
 Getting Started
 ===============
 
--  :ref:`Configuring the VPC Flow Log Function <lts_01_0009>`
--  :ref:`Configuring CTS to Upload Traces to LTS <lts_01_0010>`
+-  :ref:`Overview <lts_08300>`
+-  :ref:`Creating Log Groups and Log Streams <lts_08301>`
+-  :ref:`Installing ICAgent <lts_0829>`
+-  :ref:`Ingesting Logs <lts_08302>`
+-  :ref:`Viewing Logs in Real Time <lts_08303>`
 
 .. toctree::
    :maxdepth: 1
    :hidden: 
 
-   configuring_the_vpc_flow_log_function
-   configuring_cts_to_upload_traces_to_lts
+   overview
+   creating_log_groups_and_log_streams
+   installing_icagent
+   ingesting_logs
+   viewing_logs_in_real_time

@@ -7,7 +7,6 @@ Log Transfer
 
 -  :ref:`Overview <lts_04_0011>`
 -  :ref:`Transferring Logs to OBS <lts_04_0041>`
--  :ref:`Transferring Logs to DMS <lts_04_0043>`
 
 .. toctree::
    :maxdepth: 1
@@ -15,4 +14,3 @@ Log Transfer
 
    overview
    transferring_logs_to_obs
-   transferring_logs_to_dms

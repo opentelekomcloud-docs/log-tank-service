@@ -5,16 +5,14 @@
 Managing Hosts
 ==============
 
--  :ref:`Installing ICAgent <lts_02_0013>`
--  :ref:`Upgrading ICAgent <lts_02_0014>`
--  :ref:`Uninstalling ICAgent <lts_02_0015>`
--  :ref:`ICAgent Statuses <lts_04_0013>`
+-  :ref:`Installing ICAgent (Intra-Region Hosts) <lts_02_0013>`
+-  :ref:`Installing ICAgent (Extra-Region Hosts) <lts_02_0828>`
+-  :ref:`Managing ICAgent <lts_02_0014>`
 
 .. toctree::
    :maxdepth: 1
    :hidden: 
 
-   installing_icagent
-   upgrading_icagent
-   uninstalling_icagent
-   icagent_statuses
+   installing_icagent_intra-region_hosts
+   installing_icagent_extra-region_hosts
+   managing_icagent
