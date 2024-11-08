@@ -5,20 +5,20 @@
 Service Overview
 ================
 
--  :ref:`Introduction <lts_01_0002>`
+-  :ref:`What Is LTS? <lts_01_0002>`
 -  :ref:`Basic Concepts <lts_01_0003>`
--  :ref:`Basic Functions <lts_01_0004>`
+-  :ref:`Features <lts_01_0004>`
 -  :ref:`Usage Restrictions <lts-0740>`
--  :ref:`Permissions Management <lts-03205>`
+-  :ref:`Permissions <lts-03205>`
 -  :ref:`Related Services <lts_01_0005>`
 
 .. toctree::
    :maxdepth: 1
    :hidden: 
 
-   introduction
+   what_is_lts
    basic_concepts
-   basic_functions
+   features
    usage_restrictions
-   permissions_management
+   permissions
    related_services

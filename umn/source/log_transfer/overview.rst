@@ -5,8 +5,8 @@
 Overview
 ========
 
-Logs reported from hosts and cloud services are retained in LTS for seven days by default. You can set the retention period to be 1 to 30 days. Retained logs are deleted once the retention period is over. For long-term storage, you can transfer logs to Object Storage Service (OBS).
+Logs reported from hosts and cloud services are retained in LTS. You can set the retention period. Retained logs are deleted once the retention period is over. For long-term retention, you can transfer logs to other cloud services.
 
 .. note::
 
-   Log transfer refers to when logs are replicated to other cloud services. Retained logs are deleted once the retention period is over, but the logs that have been transferred to other services are not affected.
+   Log transfer refers to when logs are replicated to other cloud services. LTS deletes retained logs once the retention period is over, but the logs that have been transferred to other services are not affected.

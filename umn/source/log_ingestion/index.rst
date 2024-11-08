@@ -5,10 +5,12 @@
 Log Ingestion
 =============
 
--  :ref:`Collecting Logs from Cloud Services <lts_04_0105>`
+-  :ref:`Ingesting Cloud Service Logs to LTS <lts_04_0105>`
+-  :ref:`Other Ingestion Modes <lts_04_1121>`
 
 .. toctree::
    :maxdepth: 1
    :hidden: 
 
-   collecting_logs_from_cloud_services/index
+   ingesting_cloud_service_logs_to_lts/index
+   other_ingestion_modes/index
