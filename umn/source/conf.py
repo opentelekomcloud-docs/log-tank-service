@@ -110,7 +110,7 @@ html_copy_source = False
 latex_documents = [
     ('index',
      'lts-umn.tex',
-     u'Log Tank Service - User Guide',
+    u'Log Tank Service - User Guide',
      u'OpenTelekomCloud', 'manual'),
 ]
 
