@@ -110,7 +110,7 @@ html_copy_source = False
 latex_documents = [
     ('index',
      'lts-api-ref.tex',
-     u'Log Tank Service - API Reference',
+    u'Log Tank Service - API Reference',
      u'OpenTelekomCloud', 'manual'),
 ]
 
