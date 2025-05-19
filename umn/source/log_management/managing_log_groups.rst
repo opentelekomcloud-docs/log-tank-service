@@ -5,7 +5,7 @@
 Managing Log Groups
 ===================
 
-A log group is the basic unit for LTS to manage logs. It classifies and consists of log streams, but does not store any log data. Up to 100 log groups can be created for an account.
+A log group is the basic unit for LTS to manage logs. It classifies and consists of log streams, but does not store any log data. Up to 100 log groups can be created for each account.
 
 A log group usually corresponds to a project or business in a company. You are advised to sort log streams of various applications or services within a project or business to the same log group. In this way, project staff only need to monitor log streams in the log group corresponding to their project, without being distracted by log streams of other projects.
 
@@ -19,9 +19,9 @@ You have obtained an account and its password for logging in to the LTS console.
 Creating a Log Group
 --------------------
 
-#. Log in to the management console and choose **Management & Deployment** > **Log Tank Service**. The **Log Management** page is displayed by default.
+#. Log in to the management console and choose **Management & Deployment** > **Log Tank Service**.
 
-#. Click **Create Log Group**.
+#. On the **Log Management** page, click **Create Log Group**.
 
 #. On the displayed page, set log group parameters by referring to :ref:`Table 1 <lts_04_0003__en-us_topic_0000001125775239_table9217134717322>`.
 
@@ -39,13 +39,14 @@ Creating a Log Group
       |                                   |                                                                                                                                                                                                                                  |
       |                                   | Enterprise projects allow you to manage cloud resources and users by project.                                                                                                                                                    |
       +-----------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-      | Log Retention Duration            | Specify the log retention duration for the log group, that is, how many days the logs will be stored in LTS after being reported to LTS.                                                                                         |
+      | Log Retention (Days)              | Specify the log retention period for the log group, that is, how many days the logs will be stored in LTS after being reported to LTS.                                                                                           |
       |                                   |                                                                                                                                                                                                                                  |
-      |                                   | By default, logs are retained for 30 days (customizable for 1 to 365 days).                                                                                                                                                      |
+      |                                   | By default, logs are retained for 30 days. You can set the retention period to one to 365 days.                                                                                                                                  |
       +-----------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-      | Tag                               | You can tag log groups as required. Click **Add Tags**, enter a tag key and value, and enable **Apply to Log Stream**.                                                                                                           |
+      | Tag                               | Tag the log group as required. Click **Add Tags**, enter a tag key and value, and enable **Apply to Log Stream**.                                                                                                                |
       |                                   |                                                                                                                                                                                                                                  |
       |                                   | -  To add more tags, repeat this step. A maximum of 20 tags can be added.                                                                                                                                                        |
+      |                                   | -  To delete a tag, click **Delete** in the **Operation** column of the tag.                                                                                                                                                     |
       |                                   | -  A tag key can contain up to 128 characters, and a tag value can contain up to 255 characters.                                                                                                                                 |
       |                                   | -  A tag key must be unique.                                                                                                                                                                                                     |
       |                                   | -  If a tag is used by a transfer task, you need to modify the task configuration after deleting the tag.                                                                                                                        |
@@ -66,7 +67,7 @@ You can modify log group settings, such as the group name, log retention duratio
 
 #. In the log group list on the **Log Management** page, locate the target log group and click **Modify** in the **Operation** column.
 
-#. On the page displayed, modify the group name, log retention duration, and tags on the displayed page.
+#. On the page displayed, modify the group name, log retention period, and tags.
 
 #. Click **OK**.
 
@@ -81,18 +82,16 @@ You can modify log group settings, such as the group name, log retention duratio
 Deleting a Log Group
 --------------------
 
-You can delete a log group that is no longer needed. Deleting a log group will also delete the log streams and log data in the log group. Deleted log groups cannot be recovered. Exercise caution when performing the deletion.
+You can delete a log group that is no longer needed. Deleting a log group will also delete the log streams and log data in the log group. **This may lead to exceptions in related tasks. In addition, deleted log groups cannot be restored. Exercise caution when performing this operation.**
 
-.. note::
-
-   If you want to delete a log group that is associated with a log transfer task, delete the task first.
+If you want to delete a log group that is associated with a log transfer task, delete the task first.
 
 #. In the log group list on the **Log Management** page, locate the target log group and click **Delete** in the **Operation** column.
 
 #. Enter **DELETE** and click **OK**.
 
 
-   .. figure:: /_static/images/en-us_image_0000001972605366.png
+   .. figure:: /_static/images/en-us_image_0000002178924481.png
       :alt: **Figure 2** Deleting a log group
 
       **Figure 2** Deleting a log group

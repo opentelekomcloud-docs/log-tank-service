@@ -17,10 +17,9 @@ You can choose from multiple system templates, but cannot modify the field types
 
 3. View the log parsing results in the **Template Details** table.
 
-   .. note::
-
-      -  If you select a system template for structuring, it uses the user-defined log time.
-      -  Fields of the string type do not support range query using the >, =, or < operators or the "in" syntax. Use asterisks (*) or question marks (?) for fuzzy query. You need to reconfigure the structuring and change the value of this field to a number.
+   -  If you select a system template for structuring, it uses the custom log time.
+   -  Fields of the string type do not support range query using the >, =, or < operators or the "in" syntax. Use asterisks (*) or question marks (?) for fuzzy query. You need to reconfigure the structuring and change the value of this field to a number.
+   -  Supporting system templates for a cloud service does not mean logs of that service have been ingested to LTS. To view services with log ingestion configured, navigate to the **Ingestion Center** page under **Log Ingestion** on the LTS console.
 
    .. _lts_0824__en-us_topic_0000001532747921_table1181293435214:
 
@@ -97,11 +96,17 @@ You can choose from multiple system templates, but cannot modify the field types
       +------------------------------------+--------------------------------+---------------------------+----------------------+
       | CCE event logs                     | Defined by CCE.                | No                        | No                   |
       +------------------------------------+--------------------------------+---------------------------+----------------------+
+      | CCE NGINX-INGRESS logs             | Defined by CCE.                | No                        | No                   |
+      |                                    |                                |                           |                      |
+      |                                    |                                |                           | ``-``                |
+      +------------------------------------+--------------------------------+---------------------------+----------------------+
       | GeminiDB Redis audit logs          | Defined by GeminiDB Redis.     | No                        | No                   |
       +------------------------------------+--------------------------------+---------------------------+----------------------+
       | Influx slow query logs             | Defined by Influx.             | No                        | No                   |
       +------------------------------------+--------------------------------+---------------------------+----------------------+
       | Microgateway                       | Defined by Microgateway.       | No                        | No                   |
+      +------------------------------------+--------------------------------+---------------------------+----------------------+
+      | GeminiDB Mongo audit logs          | Defined by GeminiDB Mongo.     | No                        | No                   |
       +------------------------------------+--------------------------------+---------------------------+----------------------+
 
 4. Click **Save**.

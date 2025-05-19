@@ -1,6 +1,6 @@
-:original_name: en-us_topic_0000001795709689.html
+:original_name: lts_faq_0140.html
 
-.. _en-us_topic_0000001795709689:
+.. _lts_faq_0140:
 
 What Do I Do If I Could Not Search for Logs on LTS?
 ===================================================

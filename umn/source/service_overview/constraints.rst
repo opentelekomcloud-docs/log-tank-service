@@ -2,12 +2,12 @@
 
 .. _lts-0740:
 
-Usage Restrictions
-==================
+Constraints
+===========
 
-This section describes the restrictions on LTS log read/write.
+This section describes the constraints on LTS log read/write.
 
-.. table:: **Table 1** Log read/write restrictions
+.. table:: **Table 1** Log read/write constraints
 
    +------------+-------------------+------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------+
    | Scope      | Item              | Description                                                                                                                  | Remarks                                                                     |

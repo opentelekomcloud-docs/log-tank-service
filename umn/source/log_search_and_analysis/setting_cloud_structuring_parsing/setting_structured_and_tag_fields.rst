@@ -17,7 +17,7 @@ You can set extracted fields after cloud structuring. For details, see :ref:`Tab
 .. table:: **Table 1** Rules for configuring structured fields
 
    +--------------------------------------+------------------------------------------------------------------------------------------------+---------------------------+----------------------+
-   | Template Name                        | Field Name                                                                                     | Field Type Can Be Changed | Field Can Be Deleted |
+   | Structuring Method                   | Field Name                                                                                     | Field Type Can Be Changed | Field Can Be Deleted |
    +======================================+================================================================================================+===========================+======================+
    | Regular expressions (auto generate)  | User-defined.                                                                                  | Yes                       | Yes                  |
    |                                      |                                                                                                |                           |                      |
@@ -35,31 +35,25 @@ You can set extracted fields after cloud structuring. For details, see :ref:`Tab
    | Custom templates                     | User-defined.                                                                                  | Yes                       | Yes                  |
    +--------------------------------------+------------------------------------------------------------------------------------------------+---------------------------+----------------------+
 
-.. note::
+When you use regular expressions (manually entered), JSON, delimiters, Nginx, or custom templates to structure logs, field names:
 
-   When you use regular expressions (manually entered), JSON, delimiters, Nginx, or custom templates to structure logs, field names:
-
-   -  Can contain only letters, digits, hyphens (-), underscores (_), and periods (.).
-   -  Cannot start with a period (.) or underscore (_) or end with a period (.).
-   -  Can contain 1 to 64 characters.
+Can contain 1 to 64 characters. Use only letters, digits, hyphens (-), underscores (_), and periods (.). Do not use underscores before another underscore or a period. Do not start or end with a period.
 
 Setting Tag Fields
 ------------------
 
-When you structure logs, you can configure tag fields, so you can use these fields to run SQL queries on the **Visualization** page.
+When configuring log structuring, you can set the tag fields for the log information.
 
 #. In **Step 2 Extract fields**, click the **Tag Fields** tab and **Add Field**.
+
 #. In the **Field** column, enter a name for the tag field, for example, **hostIP**.
 
-   .. note::
-
-      If you configure tag fields for a structuring rule that was created before the function of tag fields was brought online, no example values will be shown with the tag fields.
+   If you configure tag fields for a structuring rule that was created before the function of tag fields was brought online, no example values will be shown with the tag fields.
 
 #. To add more fields, click **Add Field**.
+
 #. Click **Save**.
 
-   .. note::
-
-      -  Tag fields can be the following system fields: **category**, **clusterId**, **clusterName**, **containerName**, **hostIP**, **hostId**, **hostName**, **nameSpace**, **pathFile**, and **podName**.
-      -  Tag fields cannot be the following system fields: **groupName**, **logStream**, **lineNum**, **content**, **logContent**, **logContentSize**, and **collectTime**.
-      -  You can configure both field extraction and tag fields during log structuring.
+   -  Tag fields can be the following system fields: **category**, **clusterId**, **clusterName**, **containerName**, **hostIP**, **hostId**, **hostName**, **nameSpace**, **pathFile**, and **podName**.
+   -  Tag fields cannot be the following system fields: **groupName**, **logStream**, **lineNum**, **content**, **logContent**, **logContentSize**, and **collectTime**.
+   -  You can configure both field extraction and tag fields during log structuring.
