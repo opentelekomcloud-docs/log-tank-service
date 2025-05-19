@@ -34,83 +34,65 @@ Initial Installation (Linux)
 
 #. Log in to the management console and choose **Management & Deployment** > **Log Tank Service**.
 
-#. In the navigation pane, choose **Host Management**.
+#. Choose **Host Management** > **Hosts** in the navigation pane.
 
 #. Click **Install ICAgent** in the upper right corner.
 
-   .. note::
+   Before installing ICAgent, ensure that the time and time zone of your local browser are consistent with those of the host.
 
-      Before installing ICAgent, ensure that the time and time zone of your local browser are consistent with those of the host.
+#. Set **Host** to **Intra-region hosts**.
 
-   .. table:: **Table 2** Installing ICAgent
+#. Set **OS** to **Linux**.
 
-      +-----------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------+
-      | Parameter             | Description                                                                                                                                                                                               | Example               |
-      +=======================+===========================================================================================================================================================================================================+=======================+
-      | Host                  | **Intra-Region Hosts** is selected by default. Check whether the host whose logs need to be collected is in or out of the region.                                                                         | ``-``                 |
-      +-----------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------+
-      | OS                    | **Linux** is selected by default.                                                                                                                                                                         | ``-``                 |
-      +-----------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------+
-      | Installation Mode     | -  If you select **Obtain AK/SK**, you need to obtain the AK/SK in advance. AK is used together with SK to sign requests cryptographically, ensuring that the requests are secret, complete, and correct. | ``-``                 |
-      |                       |                                                                                                                                                                                                           |                       |
-      |                       |    For details, see :ref:`How Do I Obtain an AK/SK Pair? <lts_03_0015>`                                                                                                                                   |                       |
-      |                       |                                                                                                                                                                                                           |                       |
-      |                       |    .. note::                                                                                                                                                                                              |                       |
-      |                       |                                                                                                                                                                                                           |                       |
-      |                       |       Ensure that the public account and AK/SK will not be deleted or disabled. If the AK/SK is deleted, the ICAgent cannot report data to LTS.                                                           |                       |
-      +-----------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------+
+#. If you set **Installation Mode** to **Obtain AK/SK**, perform this step. Obtain an access key (AK/SK) in advance. You need to enter it when installing ICAgent. AK is used together with SK to sign requests cryptographically, ensuring that the requests are secret, complete, and correct. Ensure that the public account and AK/SK will not be deleted or disabled. If the AK/SK is deleted, ICAgent cannot report data to LTS.
 
+   For details, see :ref:`How Do I Obtain an AK/SK Pair? <lts_03_0015>`
 
-   .. figure:: /_static/images/en-us_image_0000001981261620.png
-      :alt: **Figure 1** Installing ICAgent
+#. If you set **Installation Mode** to **Create an agency**, this step is required. In this installation mode, you do not need to obtain and enter an AK/SK. ICAgent automatically obtains an AK/SK during agency creation.
 
-      **Figure 1** Installing ICAgent
+   For details, see :ref:`How Do I Install ICAgent by Creating an Agency? <lts_03_0002>`
 
-#. Click **Copy Command** to copy the ICAgent installation command.
+#. On the **Install ICAgent** page, click **Copy Command** to copy the ICAgent installation command.
 
 #. Log in as user **root** to the host which is deployed in the region same as that you are logged in to (by using a remote login tool such as PuTTY) and run the copied command. If you have chosen **Obtain AK/SK** as the installation mode, enter the AK/SK as prompted.
 
-   .. note::
+   -  When message "ICAgent install success" is displayed, ICAgent has been installed in the **/opt/oss/servicemgr/** directory of the host.
+   -  If the installation fails, uninstall ICAgent and then install it again.
 
-      -  When message **ICAgent install success** is displayed, ICAgent has been installed in the **/opt/oss/servicemgr/** directory of the host.
-      -  If the installation fails, uninstall ICAgent and then install it again.
-
-#. Check wether the ICAgent status is **Running** by choosing **Host Management** > **Hosts** in the navigation pane of the LTS console.
+#. Choose **Host Management** > **Hosts** in the navigation pane of the LTS console and check whether the ICAgent status is **Running**.
 
 Initial Installation (Windows)
 ------------------------------
 
-#. Click **Install ICAgent** in the upper right corner.
+#. On the **Hosts** page of the LTS console, click **Install ICAgent** in the upper right corner.
 
-#. Set **Host** to **Intra-Region Hosts**.
+#. Set **Host** to **Intra-region hosts**.
 
 #. Set **OS** to **Windows**.
 
-#. You can download it to the local PC by clicking the name of the package or copying the download URL to the address bar of your browser.
+#. You can download it to the local PC by clicking the name of the package or visiting the download URL.
 
 #. Save the ICAgent installation package to a directory on the target host, for example, **C:\\ICAgent**, and decompress the package.
 
-#. Obtain an AK/SK pair. For details, see :ref:`How Do I Obtain an AK/SK Pair? <lts_03_0015>`
+#. Obtain an AK/SK. For details, see :ref:`How Do I Obtain an AK/SK Pair? <lts_03_0015>`
 
 #. On the **Install ICAgent** page, click **Copy Command** to copy the ICAgent installation command to the local PC and replace the AK/SK in the command with the obtained one.
 
 #. Open the Command Prompt, go to the directory where the ICAgent installation package is decompressed, and run the copied command.
 
-   If the message **Service icagent installed successfully** is displayed, the installation is successful.
+   If the message "Service icagent installed successfully" is displayed, the installation is successful.
 
-   .. note::
+   -  If you have installed a third-party antivirus software, add ICAgent as a trusted program. Otherwise, ICAgent installation may fail.
 
-      -  If you have installed a third-party antivirus software, add ICAgent as a trusted program. Otherwise, ICAgent installation may fail.
+   -  To uninstall ICAgent, go to the **\\ICProbeAgent\\bin\\manual\\win** directory where the ICAgent installation package was decompressed, and double-click the script named **uninstall.bat**. When the message "icagent removed successfully" is displayed, the uninstallation is successful.
 
-      -  To uninstall ICAgent, go to the **\\ICProbeAgent\\bin\\manual\\win** directory where the ICAgent installation package was decompressed, and double-click the script named **uninstall.bat**. When the message **icagent removed successfully** is displayed, the uninstallation is successful.
+      Uninstalling ICAgent does not delete the files in the corresponding directories. You need to delete them manually if necessary.
 
-         Uninstalling ICAgent does not delete the files in the corresponding directories. You need to delete them manually if necessary.
+   -  To check the ICAgent status, go to the directory where the ICAgent installation package was decompressed, open the Command Prompt, and run the **sc query icagent** command. If **RUNNING** is returned, ICAgent is running. If the message "The specified service does not exist as an installed service" is displayed, ICAgent has been uninstalled.
 
-      -  To check the ICAgent status, go to the directory where the ICAgent installation package was decompressed, open the Command Prompt, and run the **sc query icagent** command. If **RUNNING** is returned, ICAgent is running. If the message **The specified service does not exist as an installed service** is displayed, ICAgent has been uninstalled.
+   -  If you reinstall ICAgent after uninstallation and find that the ICAgent status remains pending, end the **icagent.exe** process in **Task Manager** and try installation again.
 
-      -  If you reinstall ICAgent after uninstallation and find that the ICAgent status is still pending, end the **icagent.exe** process in **Task Manager** and try again.
-
-#. Check wether the ICAgent status is **Running** by choosing **Host Management** > **Hosts** in the navigation pane of the LTS console.
+#. Choose **Host Management** > **Hosts** in the navigation pane of the LTS console and check whether the ICAgent status is **Running**.
 
 Inherited Installation (Linux)
 ------------------------------
@@ -125,12 +107,10 @@ Assume that you need to install ICAgent on multiple hosts, and one of the hosts 
 
 #. Enter the password for user **root** of the host when prompted.
 
-   .. note::
-
-      -  If the Expect tool is installed on the host that has ICAgent installed, the ICAgent installation should be able to complete without prompting you for a password. Otherwise, enter the password as prompted.
-      -  Ensure that user **root** can run SSH or SCP commands on the host where ICAgent has been installed to remotely communicate with the remote host to install ICAgent.
-      -  When message **ICAgent install success** is displayed, ICAgent has been installed in the **/opt/oss/servicemgr/** directory of the host. You can then view the ICAgent status by choosing **Host Management** > **Hosts** in the navigation pane of the LTS console.
-      -  If **ICAgent install success** is not displayed, the installation fails. Uninstall ICAgent and install it again.
+   -  If the Expect tool is installed on the host that has ICAgent installed, the ICAgent installation should be able to complete without prompting you for a password. Otherwise, enter the password as prompted.
+   -  Ensure that user **root** can run SSH or SCP commands on the host where ICAgent has been installed to remotely communicate with the remote host to install ICAgent.
+   -  When message "ICAgent install success" is displayed, ICAgent has been installed in the **/opt/oss/servicemgr/** directory of the host. You can then choose **Host Management** > **Hosts** in the navigation pane of the LTS console to check the ICAgent status.
+   -  If "ICAgent install success" is not displayed, the installation fails. Uninstall ICAgent and install it again.
 
 Batch Inherited Installation (Linux)
 ------------------------------------
@@ -148,11 +128,9 @@ The IP addresses and **root**'s passwords of all hosts to install ICAgent have b
 
 **192.168.0.39** *Password* (Replace the IP address and password with the actual ones)
 
-.. note::
+-  The **iplist.cfg** file contains sensitive information. You are advised to clear it after using it.
 
-   -  The **iplist.cfg** file contains sensitive information. You are advised to clear it after using it.
-
-   -  If all hosts share a password, list only IP addresses in the **iplist.cfg** file and enter the password manually during execution. If one of the hosts uses a different password, type the password behind its IP address.
+-  If all hosts share a password, list only IP addresses in the **iplist.cfg** file and enter the password manually during execution. If one of the hosts uses a different password, type the password behind its IP address.
 
 **Procedure**
 
@@ -177,6 +155,6 @@ The IP addresses and **root**'s passwords of all hosts to install ICAgent have b
       End of install agent: 192.168.0.109
       All hosts install icagent finish.
 
-   Wait for a while. When message **All hosts install icagent finish.** is displayed, ICAgent has been installed on all the hosts listed in the configuration file.
+   Wait for a while. When message "All hosts install icagent finish." is displayed, ICAgent has been installed on all the hosts listed in the configuration file.
 
-#. Check the :ref:`ICAgent status <lts_02_0014__en-us_topic_0000001167072801_section18919294522>` by choosing **Host Management** > **Hosts** in the navigation pane of the LTS console.
+#. Choose **Host Management** > **Hosts** in the navigation pane of the LTS console to check the :ref:`ICAgent status <lts_02_0014__en-us_topic_0000001167072801_section18919294522>`.

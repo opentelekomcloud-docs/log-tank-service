@@ -7,6 +7,6 @@ What Are the Common Causes of LTS Log Transfer Abnormalities?
 
 If a log transfer task is in the abnormal state on the **Log Transfer** page of the LTS console:
 
--  Possible cause: The OBS bucket policy is incorrect.
+Possible cause: The OBS bucket policy is incorrect.
 
-   Solution: Go to the OBS console to correct the settings.
+Solution: Go to the OBS console to correct the settings.

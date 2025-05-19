@@ -20,15 +20,9 @@ Installing ICAgent
 
 #. Log in to the management console and choose **Management & Deployment** > **Log Tank Service**.
 
-#. In the navigation pane, choose **Host Management**.
+#. Choose **Host Management** > **Hosts** in the navigation pane.
 
 #. Click **Install ICAgent** in the upper right corner.
-
-
-   .. figure:: /_static/images/en-us_image_0000001795704605.png
-      :alt: **Figure 1** Installing ICAgent
-
-      **Figure 1** Installing ICAgent
 
 #. Set **Host** to **Intra-Region Hosts**.
 
@@ -58,4 +52,4 @@ Installing ICAgent
 
 #. Log in as user **root** to the host (for example, by using a remote login tool such as PuTTY). Run the copied command and enter the obtained AK/SK to install ICAgent.
 
-   When message **ICAgent install success** is displayed, ICAgent has been installed in the **/opt/oss/servicemgr/** directory of the host. You can then view the ICAgent status on the **Hosts** tab of the **Host Management** page on the LTS console.
+   When message **ICAgent install success** is displayed, ICAgent has been installed in the **/opt/oss/servicemgr/** directory of the host. You can then choose **Host Management** > **Hosts** in the navigation pane of the LTS console to check the ICAgent status.

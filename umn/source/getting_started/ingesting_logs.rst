@@ -20,7 +20,7 @@ Procedure
 
 #. Log in to the management console and choose **Management & Deployment** > **Log Tank Service**.
 
-#. In the navigation pane, choose **Log Ingestion**.
+#. In the navigation pane, choose **Log Ingestion** > **Ingestion Center**.
 
 #. Click **ECS (Elastic Cloud Server)** to configure log ingestion.
 
@@ -38,8 +38,8 @@ Procedure
 
          You can skip this step and configure host groups as follows after the ingestion configuration is complete. However, you are advised to configure host groups during the first ingestion to ensure that the collection configuration takes effect.
 
-         -  Choose **Host Management** in the navigation pane, click the **Host Groups** tab, and complete the association.
-         -  Choose **Log Ingestion** in the navigation pane, click an ingestion configuration, and make the association on the details page.
+         -  Choose **Host Management** > **Host Groups** in the navigation pane and complete the association.
+         -  Choose **Log Ingestion** > **Ingestion Management** in the navigation pane, click an ingestion configuration, and make the association on the details page.
 
    b. Click **Next: Configurations**.
 

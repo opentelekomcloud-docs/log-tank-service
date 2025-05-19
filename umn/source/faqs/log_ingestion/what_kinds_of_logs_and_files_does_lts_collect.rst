@@ -9,7 +9,7 @@ Logs That Can Be Collected by LTS:
 ----------------------------------
 
 -  Host logs. ICAgent should be installed on the target hosts for log collection.
--  Cloud service logs. To collect logs from cloud services, such as Elastic Load Balance (ELB) or Virtual Private Cloud (VPC), enable log reporting to LTS in the cloud services.
+-  Cloud service logs. To collect logs from cloud services such as ELB and VPC, enable log reporting to LTS on their consoles.
 
 Files That Can Be Collected by LTS:
 -----------------------------------

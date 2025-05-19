@@ -9,7 +9,6 @@ FAQs
 -  :ref:`Log Ingestion <lts_faq_0020>`
 -  :ref:`Log Search and Analysis <lts_faq_0030>`
 -  :ref:`Log Transfer <lts_faq_0040>`
--  :ref:`Consultation <lts_faq_0060>`
 
 .. toctree::
    :maxdepth: 1
@@ -19,4 +18,3 @@ FAQs
    log_ingestion/index
    log_search_and_analysis/index
    log_transfer/index
-   consultation/index

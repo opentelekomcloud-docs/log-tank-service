@@ -12,8 +12,8 @@ Prerequisites
 
 An agency relationship has been created.
 
-Restrictions
-------------
+Constraints
+-----------
 
 Before data synchronization is complete, data in the target and source log streams may be different. Check back later in one hour.
 
@@ -24,11 +24,9 @@ If you choose cross-account ingestion as the log ingestion type, perform the fol
 
 #. Log in to the management console and choose **Management & Deployment** > **Log Tank Service**.
 
-#. Choose **Log Ingestion** in the navigation pane and click **Access Wizard**. Then, click **Cross-Account Ingestion - Log Stream Mapping**.
+#. Choose **Log Ingestion** > **Ingestion Center** in the navigation pane and click **Cross-Account Ingestion - Log Stream Mapping**.
 
-   Alternatively, choose **Log Ingestion** in the navigation pane, and click **Ingestion Rule** > **Ingest Log** > **Cross-Account Ingestion - Log Stream Mapping**.
-
-   Alternatively, choose **Log Management** in the navigation pane and click the target log stream to access its details page. Click |image1| in the upper right corner. On the displayed page, click the **Log Ingestion** tab and **Ingest Log**. In the displayed dialog box, click **Cross-Account Ingestion - Log Stream Mapping**.
+   You can also choose **Log Ingestion** > **Ingestion Management** in the navigation pane and click **Ingest Log**. On the displayed page, click **Cross-Account Ingestion - Log Stream Mapping**.
 
 #. Select an agency.
 
@@ -53,6 +51,7 @@ If you choose cross-account ingestion as the log ingestion type, perform the fol
    -  **Automatic configuration**
 
       a. Click **Auto Configure**.
+
       b. On the displayed page, set the required parameters and click **OK**.
 
          .. table:: **Table 2** Parameters of automatic ingestion rule configuration
@@ -67,30 +66,26 @@ If you choose cross-account ingestion as the log ingestion type, perform the fol
             | Select the log groups or log streams that you want to ingest from the delegator account. | Up to 20 log groups or log streams can be selected.                                                                                                                                                                                             |
             +------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
-         .. note::
-
-            By default, the names of the target log groups and target log streams of the delegated account are the same as those of the source log groups and source log streams of the delegator account. You can also manually change the names of the target log groups and target log streams.
+         By default, the names of the target log groups and target log streams of the delegated account are the same as those of the source log groups and source log streams of the delegator account. You can also manually change the names of the target log groups and target log streams.
 
       c. Click **Preview**.
 
-         .. note::
+         #. There are two types of preview results:
 
-            #. There are two types of preview results:
+            -  **A new target log stream will be created**: A target log group or log stream will be created in the delegated account.
+            -  **An existing target log stream will be ingested**: The target log group or log stream already exists in the delegated account.
 
-               -  **A new target log stream will be created**: A target log group or log stream will be created in the delegated account.
-               -  **An existing target log stream will be ingested**: The target log group or log stream already exists in the delegated account.
+         #. Preview error messages are as follows:
 
-            #. Preview error messages are as follows:
+            -  Source log stream *xxx* has been configured as the target log stream.
+            -  Target log stream *xxx* has been configured as the source log stream.
+            -  Target log stream *xxx* already exists in another log group.
+            -  Target log stream *xxx* exists in different target log groups.
+            -  Duplicate rule names.
+            -  The source log stream *xxx* is already mapped.
+            -  The number of log groups has reached the upper limit. Select an existing log group.
 
-               -  Source log stream *xxx* has been configured as the target log stream.
-               -  Target log stream *xxx* has been configured as the source log stream.
-               -  Target log stream *xxx* already exists in another log group.
-               -  Target log stream *xxx* exists in different target log groups.
-               -  Duplicate rule names.
-               -  The source log stream *xxx* is already mapped.
-               -  The number of log groups has reached the upper limit. Select an existing log group.
-
-               If any of the preceding error messages is displayed, delete the corresponding ingestion rule of the log stream.
+            If any of the preceding error messages is displayed, delete the corresponding ingestion rule of the log stream.
 
       d. After the preview is complete, click **Submit**.
 
@@ -120,34 +115,28 @@ If you choose cross-account ingestion as the log ingestion type, perform the fol
 
       b. Click **Preview**.
 
-         .. note::
+         #. There are two types of preview results:
 
-            #. There are two types of preview results:
+            -  **A new target log stream will be created**: A target log group or log stream will be created in the delegated account.
+            -  **An existing target log stream will be ingested**: The target log group or log stream already exists in the delegated account.
 
-               -  **A new target log stream will be created**: A target log group or log stream will be created in the delegated account.
-               -  **An existing target log stream will be ingested**: The target log group or log stream already exists in the delegated account.
+         #. Preview error messages are as follows:
 
-            #. There are five types of preview errors:
+            -  Source log stream *xxx* has been configured as the target log stream.
+            -  Target log stream *xxx* has been configured as the source log stream.
+            -  Target log stream *xxx* already exists in another log group.
+            -  Target log stream *xxx* exists in different target log groups.
+            -  Duplicate rule names.
+            -  The source log stream *xxx* is already mapped.
+            -  The number of log groups has reached the upper limit. Select an existing log group.
 
-               -  Source log stream *xxx* has been configured as the target log stream.
-               -  Target log stream *xxx* has been configured as the source log stream.
-               -  Target log stream *xxx* already exists in another log group.
-               -  Target log stream *xxx* exists in different target log groups.
-               -  Duplicate rule names.
-               -  The source log stream *xxx* is already mapped.
-               -  The number of log groups or log streams exceeds the upper limit.
-
-               If any of the preceding error messages is displayed, delete the corresponding ingestion rule of the log stream.
+            If any of the preceding error messages is displayed, delete the corresponding ingestion rule of the log stream.
 
       c. After the preview is complete, click **Submit** and wait until the log ingestion task is created.
 
 #. Complete the ingestion configuration.
 
-   .. note::
-
-      After the configuration is complete, data will be synchronized within one hour. Please check back later.
+   After the configuration is complete, data will be synchronized within one hour. Please check back later.
 
    -  If multiple log streams are ingested, you can click **Back to Ingestion Configurations** to view the log ingestion list.
    -  If a single log stream is ingested, click **Back to Ingestion Configurations** to view the log ingestion list. Click **View Log Stream** to view details about the ingested log stream.
-
-.. |image1| image:: /_static/images/en-us_image_0000001956646332.png

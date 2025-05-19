@@ -13,15 +13,9 @@ Saving Conditions for Quick Search
 
 #. Log in to the management console and choose **Management & Deployment** > **Log Tank Service**. The **Log Management** page is displayed by default.
 
-#. Click the target log group or stream. The log stream details page is displayed.
+#. Click the target log group or stream to access the log stream details page.
 
-#. Click |image1| on the **Raw Logs** tab page. Enter a name and statement for quick search. By default, quick search and quick search (local cache) are enabled.
-
-
-   .. figure:: /_static/images/en-us_image_0000001972864060.png
-      :alt: **Figure 1** Creating quick search
-
-      **Figure 1** Creating quick search
+#. Click |image1| on the **Log Search** tab page. Enter a name and statement for quick search. By default, quick search and quick search (local cache) are enabled.
 
    -  A quick search name is used to distinguish multiple quick search statements. The name can be customized and must meet the following requirements:
 
@@ -40,7 +34,7 @@ Viewing Context of a Log
 
 You can check the logs generated before and after a log for quick fault locating.
 
-#. On the **Raw Logs** tab page of the log details page, click |image2| to view the context.
+#. On the **Log Search** tab page of the log details page, click |image2| to view the context.
 
    Details of several logs generated before and after the log are displayed.
 

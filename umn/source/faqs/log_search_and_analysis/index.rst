@@ -8,7 +8,7 @@ Log Search and Analysis
 -  :ref:`How Often Is the Data Loaded in the Real-Time Log View in LTS? <lts_faq_0001>`
 -  :ref:`What Do I Do If I Cannot View Reported Logs in LTS? <lts_faq_0031>`
 -  :ref:`Can I Manually Delete Logs on the LTS Console? <lts_faq_0032>`
--  :ref:`What Do I Do If I Could Not Search for Logs on LTS? <en-us_topic_0000001795709689>`
+-  :ref:`What Do I Do If I Could Not Search for Logs on LTS? <lts_faq_0140>`
 
 .. toctree::
    :maxdepth: 1

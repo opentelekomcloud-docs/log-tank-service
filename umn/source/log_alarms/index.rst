@@ -5,7 +5,7 @@
 Log Alarms
 ==========
 
--  :ref:`Alarm Rules <lts_04_1122>`
+-  :ref:`Configuring Log Alarm Rules <lts_04_0062>`
 -  :ref:`Configuring Log Alarm Notifications <lts_04_1123>`
 -  :ref:`Viewing Alarms in LTS <lts_04_0060>`
 
@@ -13,6 +13,6 @@ Log Alarms
    :maxdepth: 1
    :hidden: 
 
-   alarm_rules/index
+   configuring_log_alarm_rules
    configuring_log_alarm_notifications/index
    viewing_alarms_in_lts
