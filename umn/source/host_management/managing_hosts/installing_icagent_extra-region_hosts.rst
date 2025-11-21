@@ -12,15 +12,15 @@ Prerequisites
 
 Before installing ICAgent, ensure that the time and time zone of your local browser are consistent with those of the host. If they are inconsistent, errors may occur during log reporting.
 
-Installation Methods
---------------------
+Installation Scenarios
+----------------------
 
-There are two methods to install ICAgent.
+There are two methods to install ICAgent. Select one that best suits your needs.
 
-.. table:: **Table 1** Installation methods
+.. table:: **Table 1** Installation scenarios
 
    +---------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------+
-   | Method                                                  | Scenario                                                                                                                  |
+   | Scenario                                                | Description                                                                                                               |
    +=========================================================+===========================================================================================================================+
    | Initial installation                                    | You can use this method to install ICAgent on a host that has no ICAgent installed.                                       |
    +---------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------+
@@ -30,7 +30,7 @@ There are two methods to install ICAgent.
 Initial Installation (Linux)
 ----------------------------
 
-Before installing ICAgent on a host not in this region, apply for an ECS as a jump server on the ECS console. For details, see :ref:`Using Multiple Jump Servers <lts_02_0828__en-us_topic_0000001200587559_section193401224185619>`.
+Before installing ICAgent on a host not in this region, apply for an ECS as a jump server on the ECS console. For details, see :ref:`Creating Multiple Jump Servers for Load Balancing Using ELB <lts_02_0828__en-us_topic_0000001200587559_section193401224185619>`.
 
 .. note::
 
@@ -46,14 +46,14 @@ Before installing ICAgent on a host not in this region, apply for an ECS as a ju
 
 #. Set **OS** to **Linux**.
 
-#. Set **Network Connectivity** to **Private line**. When the network is connected via a private line, hosts in other IDCs are disconnected from LTS backend by default and a network connectivity solution is required. You are advised to select **VPCEP**.
+#. Set **Network Connectivity**. For extra-region hosts to report logs to LTS in the current region, you are advised to select **Private line** for higher stability and reliability.
 
    .. note::
 
       **Private line**: Extra-region hosts connect to LTS in the current region through a jump server or VPC Endpoint (VPCEP), offering greater security and stability. In this scenario, extra-region hosts cannot communicate with LTS in the current region by default, and ICAgent installed on these hosts cannot directly access the network segment used by LTS in the current region to report logs. Therefore, you need to configure a network connection solution to use a jump server or VPCEP to connect to the LTS backend and forward data to LTS.
 
       -  Jump server: functions as a data forwarder and forwards the data collected by ICAgent from extra-region hosts to LTS. This solution is suitable for tests or scenarios with low log traffic. VPCEP is recommended for scenarios with high log traffic.
-      -  VPCEP: provides private channels to connect your VPC to LTS in the current region, enabling resources in the VPC to access VPC endpoint services without the need for EIPs. This solution reduces the risks of data transmission on public networks and improves the transmission security and efficiency.
+      -  VPCEP: provides private channels to connect your VPC to LTS in the current region. This solution reduces the risks of data transmission on public networks and improves the transmission security and efficiency.
 
 #. If you set **LTS Backend Connection** to **VPCEP**, enter the VPCEP domain name and go to :ref:`9 <lts_02_0828__en-us_topic_0000001200587559_en-us_topic_0174154559_en-us_topic_0173929603_li572917483129>`.
 
@@ -83,7 +83,7 @@ Before installing ICAgent on a host not in this region, apply for an ECS as a ju
             | Inbound   | TCP      | 8149, 8102, 8923, 30200, 30201, and 80 | Ports used by ICAgent to send data to the jump server, ensuring data connectivity between VMs in other regions and the jump server. |
             +-----------+----------+----------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------+
 
-   c. Enter the private IP address of the jump server and generate an SSH tunneling command.
+   c. Go back to the LTS console. On the **Install ICAgent** page, enter the obtained private IP address of the jump server to generate its SSH tunneling command. The private IP address of the jump server refers to the internal IP address of the VPC where the jump server is located.
 
 
       .. figure:: /_static/images/en-us_image_0000002017782149.png
@@ -91,28 +91,24 @@ Before installing ICAgent on a host not in this region, apply for an ECS as a ju
 
          **Figure 1** Entering the private IP address of the jump server
 
-      .. note::
+   d. On the **Install ICAgent** page, click **Copy Command** to copy the SSH tunneling command.
 
-         The private IP address of the jump server refers to the internal IP address of the VPC where the jump server is located.
-
-   d. Click **Copy Command**.
-
-   e. Log in to the jump server as user **root** and run the SSH tunneling command:
-
-      .. code-block::
-
-         ssh -f -N -L {Jump server IP address}:8149:{ELB IP address}:8149 -L {Jump server IP address}:8102:{ELB IP address}:8102 -L {Jump server IP address}:8923:{ELB IP address}:8923 -L {Jump server IP address}:30200:{ELB IP address}:30200 -L {Jump server IP address}:30201:{ELB IP address}:30201 -L {Jump server IP address}:80:icagent-{Region}.{OBS domain name}:80 {Jump server IP address}
+   e. Log in to the jump server as user **root** and run the SSH tunneling command.
 
       Enter the password of user **root** as prompted.
 
-   f. Run the **netstat -lnp \| grep ssh** command to check whether the corresponding TCP ports are being listened to. If the command output similar to :ref:`Figure 2 <lts_02_0828__en-us_topic_0000001200587559_en-us_topic_0174154559_en-us_topic_0173929603_fig2754142620246>` is returned, the ports are open.
+   f. Run the following command to check whether the corresponding ports are being listened to. If the command output similar to :ref:`Figure 2 <lts_02_0828__en-us_topic_0000001200587559_en-us_topic_0174154559_en-us_topic_0173929603_fig2754142620246>` is returned, the TCP ports are open.
+
+      .. code-block::
+
+         netstat -lnp | grep ssh
 
       .. _lts_02_0828__en-us_topic_0000001200587559_en-us_topic_0174154559_en-us_topic_0173929603_fig2754142620246:
 
       .. figure:: /_static/images/en-us_image_0000001155057118.png
-         :alt: **Figure 2** Open TCP ports
+         :alt: **Figure 2** Verification results of TCP ports
 
-         **Figure 2** Open TCP ports
+         **Figure 2** Verification results of TCP ports
 
       .. note::
 
@@ -120,26 +116,25 @@ Before installing ICAgent on a host not in this region, apply for an ECS as a ju
 
    g. Obtain an AK/SK and specify **DC** and **Connection IP**.
 
-      .. note::
-
-         -  **DC**: Specify a name for the data center of the host so it is easier to find the host.
-         -  **Connection IP**: For EIP connection, use the EIP of the jump server. For VPC peering connection, use the internal IP address of the VPC where the jump server locates.
+      -  **DC**: Specify a name for the data center of the host so it is easier to find the host.
+      -  **Connection IP**: For EIP connection, use the EIP of the jump server. For VPC peering connection, use the internal IP address of the VPC where the jump server locates.
 
 #. .. _lts_02_0828__en-us_topic_0000001200587559_en-us_topic_0174154559_en-us_topic_0173929603_li572917483129:
 
-   Copy the ICAgent installation command.
+   Copy the ICAgent installation command on the **Install ICAgent** page.
 
 #. Log in as user **root** to the host which is deployed in the region same as that you are logged in to (by using a remote login tool such as PuTTY) and run the copied command.
 
    .. note::
 
       -  When message "ICAgent install success" is displayed, ICAgent has been installed in the **/opt/oss/servicemgr/** directory of the host. You can then choose **Host Management** > **Hosts** in the navigation pane of the LTS console to check the ICAgent status.
-      -  If the installation fails, uninstall ICAgent and reinstall it. If the reinstallation fails, contact technical support.
+      -  If the installation fails, uninstall ICAgent and then install it again. For details, see :ref:`Uninstalling ICAgent <lts_02_0014__en-us_topic_0000001167072801_section109081507198>`.
+      -  The NIC information is obtained by ICAgent installed on the node using the **ifconfig** command. If **inet** information is not configured for the NIC, the IPv4 address is not reported, and **--** is displayed in the **Host IPv4 Address** column on the **Hosts** page. If **inet6** information is not configured, the IPv6 address is not reported, and **--** is displayed in the **Host IPv6 Address** column on the **Hosts** page.
 
 Initial Installation (Windows)
 ------------------------------
 
-Before installing ICAgent on a host not in this region, apply for a Linux ECS as a jump server on the ECS console. For details, see :ref:`Using Multiple Jump Servers <lts_02_0828__en-us_topic_0000001200587559_section193401224185619>`.
+Before installing ICAgent on a host not in this region, apply for a Linux ECS as a jump server on the ECS console. For details, see :ref:`Creating Multiple Jump Servers for Load Balancing Using ELB <lts_02_0828__en-us_topic_0000001200587559_section193401224185619>`.
 
 .. note::
 
@@ -151,14 +146,14 @@ Before installing ICAgent on a host not in this region, apply for a Linux ECS as
 
 #. Set **OS** to **Windows**.
 
-#. Set **Network Connectivity** to **Private line**. When the network is connected via a private line, hosts in other IDCs are disconnected from LTS backend by default and a network connectivity solution is required. You are advised to select **VPCEP**.
+#. Set **Network Connectivity**. For extra-region hosts to report logs to LTS in the current region, you are advised to select **Private line** for higher stability and reliability.
 
    .. note::
 
       **Private line**: Extra-region hosts connect to LTS in the current region through a jump server or VPC Endpoint (VPCEP), offering greater security and stability. In this scenario, extra-region hosts cannot communicate with LTS in the current region by default, and ICAgent installed on these hosts cannot directly access the network segment used by LTS in the current region to report logs. Therefore, you need to configure a network connection solution to use a jump server or VPCEP to connect to the LTS backend and forward data to LTS.
 
       -  Jump server: functions as a data forwarder and forwards the data collected by ICAgent from extra-region hosts to LTS. This solution is suitable for tests or scenarios with low log traffic. VPCEP is recommended for scenarios with high log traffic.
-      -  VPCEP: provides private channels to connect your VPC to LTS in the current region, enabling resources in the VPC to access VPC endpoint services without the need for EIPs. This solution reduces the risks of data transmission on public networks and improves the transmission security and efficiency.
+      -  VPCEP: provides private channels to connect your VPC to LTS in the current region. This solution reduces the risks of data transmission on public networks and improves the transmission security and efficiency.
 
 #. If you set **LTS Backend Connection** to **VPCEP**, enter the VPCEP domain name and go to :ref:`7 <lts_02_0828__en-us_topic_0000001200587559_li176451219830>`.
 
@@ -188,30 +183,22 @@ Before installing ICAgent on a host not in this region, apply for a Linux ECS as
             | Inbound   | TCP      | 8149, 8102, 8923, 30200, 30201, and 80 | ICAgent will send data to the jump server through the listed ports. |
             +-----------+----------+----------------------------------------+---------------------------------------------------------------------+
 
-   c. Enter the private IP address of the jump server and generate an SSH tunneling command.
+   c. Go back to the LTS console. On the **Install ICAgent** page, enter the obtained private IP address of the jump server to generate its SSH tunneling command. The private IP address of the jump server refers to the internal IP address of the VPC where the jump server is located.
 
-      .. note::
+   d. On the **Install ICAgent** page, click **Copy Command** to copy the SSH tunneling command.
 
-         The private IP address of the jump server refers to the internal IP address of the VPC where the jump server is located.
-
-   d. Click **Copy Command**.
-
-   e. Log in to the jump server as user **root** and run the SSH tunneling command:
-
-      .. code-block::
-
-         ssh -f -N -L {Jump server IP address}:8149:{ELB IP address}:8149 -L {Jump server IP address}:8102:{ELB IP address}:8102 -L {Jump server IP address}:8923:{ELB IP address}:8923 -L {Jump server IP address}:30200:{ELB IP address}:30200 -L {Jump server IP address}:30201:{ELB IP address}:30201 -L {Jump server IP address}:80:icagent-{Region}.{OBS domain name}:80 {Jump server IP address}
+   e. Log in to the jump server as user **root** and run the SSH tunneling command.
 
       Enter the password of user **root** as prompted.
 
-   f. Run the **netstat -lnp \| grep ssh** command to check whether the corresponding TCP ports are being listened to. If the command output similar to :ref:`Figure 3 <lts_02_0828__en-us_topic_0000001200587559_fig27641128182815>` is returned, the ports are open.
+   f. Run the **netstat -lnp \| grep ssh** command to check whether the corresponding ports are being listened to. If the command output similar to :ref:`Figure 3 <lts_02_0828__en-us_topic_0000001200587559_fig27641128182815>` is returned, the TCP ports are open.
 
       .. _lts_02_0828__en-us_topic_0000001200587559_fig27641128182815:
 
       .. figure:: /_static/images/en-us_image_0000001200507455.png
-         :alt: **Figure 3** Open TCP ports
+         :alt: **Figure 3** Verification results of TCP ports
 
-         **Figure 3** Open TCP ports
+         **Figure 3** Verification results of TCP ports
 
       .. note::
 
@@ -223,15 +210,13 @@ Before installing ICAgent on a host not in this region, apply for a Linux ECS as
 
 #. Save the ICAgent installation package to a directory on the Windows host, for example, **C:\\ICAgent**, and decompress the package.
 
-#. Obtain an AK/SK.
+#. Obtain an AK/SK and save it to replace the AK/SK in the installation command.
 
-#. Generate and copy the installation command.
+#. Generate the installation command and copy it.
 
    a. Enter the connection IP in the text box and replace the AK/SK to generate the installation command.
 
-      .. note::
-
-         **Connection IP**: For EIP connection, use the EIP of the jump server. For VPC peering connection, use the internal IP address of the VPC where the jump server locates.
+      **Connection IP**: For EIP connection, use the EIP of the jump server. For VPC peering connection, use the internal IP address of the VPC where the jump server locates.
 
    b. Click **Copy Command** to copy the ICAgent installation command.
 
@@ -240,40 +225,63 @@ Before installing ICAgent on a host not in this region, apply for a Linux ECS as
    .. note::
 
       -  If the message "Service icagent installed successfully" is displayed, the installation is successful. You can then choose **Host Management** > **Hosts** in the navigation pane of the LTS console to check the ICAgent status.
-      -  If the installation fails, uninstall ICAgent and reinstall it. If the reinstallation fails, contact technical support.
+      -  If the installation fails, uninstall ICAgent and then install it again. For details, see :ref:`Uninstalling ICAgent <lts_02_0014__en-us_topic_0000001167072801_section109081507198>`.
+      -  The NIC information is obtained by ICAgent installed on the node using the **ifconfig** command. If **inet** information is not configured for the NIC, the IPv4 address is not reported, and **--** is displayed in the **Host IPv4 Address** column on the **Hosts** page. If **inet6** information is not configured, the IPv6 address is not reported, and **--** is displayed in the **Host IPv6 Address** column on the **Hosts** page.
 
 .. _lts_02_0828__en-us_topic_0000001200587559_section193401224185619:
 
-Using Multiple Jump Servers
----------------------------
+Creating Multiple Jump Servers for Load Balancing Using ELB
+-----------------------------------------------------------
 
-.. note::
+A single jump server may encounter a single point of failure (SPOF), potentially leading to O&M instability. To mitigate this, you can create multiple jump servers and use ELB to distribute traffic among them, enhancing access reliability.
 
-   You can use multiple jump servers to prevent the risk of single point of failures and improve access reliability.
+#. .. _lts_02_0828__en-us_topic_0000001200587559_li4393122623411:
 
-#. Create a Linux ECS that as a jump server.
+   Create a Linux ECS that as a jump server.
+
+   Log in to the ECS console and create a Linux ECS. If you already have an ECS that meets the requirements, you can directly use it as the jump server.
 
    .. note::
 
       Configure the CPU and memory based on the service requirements. The recommended specifications are 2 vCPUs and 4 GB of memory, or above.
 
-#. Log in to the jump server as use **root** and use the internal IP address of the jump server to create an SSH tunnel.
+#. Add security group rules for the jump server and enable the corresponding inbound ports to ensure data connectivity between the extra-region hosts and the jump server.
 
-   a. On the ECS console, locate the jump server and obtain its private IP address.
+   a. Log in to the ECS console, check the ECS list, and locate the ECS that you created as the jump server.
 
-   b. .. _lts_02_0828__en-us_topic_0000001200587559_li1264671982520:
+   b. Click its name to go to the ECS details page. Click the security group name to access the security group details page.
 
-      On the LTS console, choose **Host Management** in the navigation pane, and click **Install ICAgent** in the upper right corner. In the dialog box displayed, select **Linux** for **OS**, select **Extra-region hosts** for **Host**, and enter the private IP address to generate the SSH tunneling command. Log in to the jump server and run the command to create an SSH tunnel.
+   c. Click the **Inbound Rules** tab and click **Add Rule**. Set the ports by referring to :ref:`Table 4 <lts_02_0828__en-us_topic_0000001200587559_table1090118814816>`. Set other parameters based on your network requirements.
 
-3. If there are multiple jump servers, repeat :ref:`2 <lts_02_0828__en-us_topic_0000001200587559_li1264671982520>` and add them to the same VPC. When creating an ECS, select the same VPC for **Network**.
-4. Create a load balancer. When creating the load balancer, you should:
+      .. _lts_02_0828__en-us_topic_0000001200587559_table1090118814816:
 
-   a. Select the same VPC as that of the jump servers.
-   b. Create an EIP for connecting to the jump servers.
-   c. Apply for the bandwidth based on the service requirements.
+      .. table:: **Table 4** Security group rule
 
-5. Add listeners for TCP ports 30200, 30201, 8149, 8923, and 8102.
-6. Add all jump servers to the backend server group.
+         +--------+----------+-------------------------------+---------------------------------------------------------------------------------------------------------------------------------------+
+         | Action | Protocol | Port                          | Description                                                                                                                           |
+         +========+==========+===============================+=======================================================================================================================================+
+         | Allow  | TCP      | 8149,8102,8923,30200,30201,80 | Ports used by ICAgent to send data to the jump server, ensuring data connectivity between hosts in other regions and the jump server. |
+         +--------+----------+-------------------------------+---------------------------------------------------------------------------------------------------------------------------------------+
+
+#. Return to the ECS list, locate the ECS created in :ref:`1 <lts_02_0828__en-us_topic_0000001200587559_li4393122623411>`, and view its private IP address and EIP (available if an EIP has been enabled).
+
+#. Log in to the LTS console. In the navigation pane, choose **Host Management** > **Hosts**. Click **Install ICAgent**. On the displayed page, enter the private IP address of the jump server to generate the SSH tunneling command. The private IP address of the jump server refers to the internal IP address of the VPC where the jump server is located.
+
+#. On the **Install ICAgent** page, click **Copy Command** to copy the SSH tunneling command.
+
+#. Log in to the jump server as user **root** and run the copied SSH tunneling command.
+
+#. Repeat the preceding steps to create multiple jump servers. Add them to the same VPC by selecting the same VPC for **Network** during their creation.
+
+8.  Log in to the ELB console and create a load balancer. When creating the load balancer, you should:
+
+    a. Select the same VPC as that of the jump servers.
+    b. Create an EIP for connecting to the jump servers.
+    c. Apply for the bandwidth based on the service requirements.
+
+9.  Add listeners for TCP ports 30200, 30201, 8149, 8923, and 8102.
+10. Create a backend server group and add all the jump servers to it.
+11. Return to the LTS console. On the **Install ICAgent** page, enter the EIP of the load balancer in **Connection IP**, copy the installation command, and run it on the extra-region host.
 
 Inherited Installation (Linux)
 ------------------------------
@@ -282,7 +290,9 @@ Assume that you need to install ICAgent on multiple hosts, and one of the hosts 
 
 #. Run the following command on the host where ICAgent has been installed, where *x.x.x.x* is the IP address of the host you want to install ICAgent on.
 
-   **bash /opt/oss/servicemgr/ICAgent/bin/remoteInstall/remote_install.sh -ip** **x.x.x.x**
+   .. code-block::
+
+      bash /opt/oss/servicemgr/ICAgent/bin/remoteInstall/remote_install.sh -ip x.x.x.x
 
 #. Enter the password for user **root** of the host when prompted.
 
@@ -298,45 +308,31 @@ Batch Inherited Installation (Linux)
 
 Assume that you need to install ICAgent on multiple hosts, and one of the hosts already has ICAgent installed. The ICAgent installation package, **ICProbeAgent.tar.gz**, is in the **/opt/ICAgent/** directory. In this case, you can follow the directions below to install ICAgent on other hosts in batches.
 
-.. important::
-
-   -  The hosts must all belong to the same VPC and be on the same subnet.
+-  The hosts must all belong to the same VPC and be on the same subnet.
+-  **Python 3.\*** is required for batch installation. If you are prompted that Python cannot be found during ICAgent installation, install Python of a proper version on the host and try again.
 
 **Prerequisites**
 
-The IP addresses and passwords of all hosts to install ICAgent have been collected, sorted in the **iplist.cfg** file, and uploaded to the **/opt/ICAgent/** directory on the host that has ICAgent installed. Each IP address and password in the **iplist.cfg** file must be separated by a space. Examples:
+The IP addresses and **root**'s passwords of all hosts to install ICAgent have been collected, sorted in the **iplist.cfg** file, and uploaded to the **/opt/ICAgent/** directory on the host that has ICAgent installed. An IP address and the password of a host's user **root** in the **iplist.cfg** file must be separated by a space. Examples:
 
 **192.168.0.109** *Password* (Replace the IP address and password with the actual ones)
 
 **192.168.0.39** *Password* (Replace the IP address and password with the actual ones)
 
-.. note::
+-  The **iplist.cfg** file contains sensitive information. You are advised to clear it after using it.
 
-   -  The **iplist.cfg** file contains sensitive information. You are advised to clear it after using it.
+-  If all servers share the same password, the **iplist.cfg** file only needs to include the IP addresses, not passwords. You need to enter the password during execution. If an IP address has a different password, enter the password after the IP address.
 
-   -  If all hosts share a password, list only IP addresses in the **iplist.cfg** file and enter the password manually during execution. If one of the hosts uses a different password, type the password behind its IP address.
-
-**Procedure**
+Perform the following operations:
 
 #. Run the following command on the host that has ICAgent installed:
 
-   **bash /opt/oss/servicemgr/ICAgent/bin/remoteInstall/remote_install.sh -batchModeConfig /opt/ICAgent/iplist.cfg**
+   .. code-block::
+
+      bash /opt/oss/servicemgr/ICAgent/bin/remoteInstall/remote_install.sh -batchModeConfig /opt/ICAgent/iplist.cfg
 
    Enter the default password for user **root** of the hosts to install ICAgent. If the passwords of all hosts have been configured in the **iplist.cfg** file, press **Enter** to skip this step.
 
-   .. code-block::
+   Wait for a while. When message "Install ICAgent success" is displayed, ICAgent has been installed on all the hosts listed in the configuration file.
 
-      batch install begin
-      Please input default passwd:
-      send cmd to 192.168.0.109
-      send cmd to 192.168.0.39
-      2 tasks running, please wait...
-      2 tasks running, please wait...
-      2 tasks running, please wait...
-      End of install agent: 192.168.0.39
-      End of install agent: 192.168.0.109
-      All hosts install icagent finish.
-
-   If the message "All hosts install icagent finish." is displayed, ICAgent has been installed on all the hosts listed in the configuration file.
-
-#. Choose **Host Management** > **Hosts** in the navigation pane of the LTS console to check the :ref:`ICAgent status <lts_02_0014__en-us_topic_0000001167072801_section18919294522>`.
+#. Choose **Host Management** > **Hosts** in the navigation pane of the LTS console to check the hosts' ICAgent statuses. For details, see :ref:`Checking the ICAgent Status <lts_02_0014__en-us_topic_0000001167072801_section18919294522>`.

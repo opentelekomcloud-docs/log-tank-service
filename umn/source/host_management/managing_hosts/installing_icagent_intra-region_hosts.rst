@@ -5,29 +5,33 @@
 Installing ICAgent (Intra-Region Hosts)
 =======================================
 
-To use LTS to collect logs (such as host metrics, container metrics, node logs, container logs, and standard output logs) from intra-region hosts, you need to install ICAgent on the hosts. ICAgent is a log collection tool for LTS. It runs on hosts where logs need to be collected.
+To use LTS to collect logs (such as node logs, container logs, and standard output) from intra-region hosts, you must install ICAgent on them. ICAgent is a log collection tool for LTS. It runs on hosts where logs need to be collected.
 
 Prerequisites
 -------------
 
 Before installing ICAgent, ensure that the time and time zone of your local browser are consistent with those of the host. If they are inconsistent, errors may occur during log reporting.
 
-Installation Methods
---------------------
+Installation Scenarios
+----------------------
 
-There are two methods to install ICAgent.
+There are two methods to install ICAgent. Select one that best suits your needs.
 
-.. table:: **Table 1** Installation methods
+.. table:: **Table 1** Installation scenarios
 
-   +---------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------+
-   | Method                                                  | Scenario                                                                                                                                         |
-   +=========================================================+==================================================================================================================================================+
-   | Initial installation                                    | You can use this method to install ICAgent on a host that has no ICAgent installed.                                                              |
-   |                                                         |                                                                                                                                                  |
-   |                                                         | Run the **ps -aux \| grep icagent** command on the host to check whether there is an ICAgent process. If no, the ICAgent has not been installed. |
-   +---------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------+
-   | Inherited installation (supported only for Linux hosts) | When ICAgent has already been installed on one host but needs to be installed on multiple hosts, you can use this method.                        |
-   +---------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------+
+   +---------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------+
+   | Scenario                                                | Description                                                                                                               |
+   +=========================================================+===========================================================================================================================+
+   | Initial installation                                    | You can use this method to install ICAgent on a host that has no ICAgent installed.                                       |
+   |                                                         |                                                                                                                           |
+   |                                                         | Run the following command on the host. If no ICAgent process is displayed, no ICAgent has been installed on the host.     |
+   |                                                         |                                                                                                                           |
+   |                                                         | .. code-block::                                                                                                           |
+   |                                                         |                                                                                                                           |
+   |                                                         |    ps -aux | grep icagent                                                                                                 |
+   +---------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------+
+   | Inherited installation (supported only for Linux hosts) | When ICAgent has already been installed on one host but needs to be installed on multiple hosts, you can use this method. |
+   +---------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------+
 
 Initial Installation (Linux)
 ----------------------------
@@ -57,9 +61,11 @@ Initial Installation (Linux)
 #. Log in as user **root** to the host which is deployed in the region same as that you are logged in to (by using a remote login tool such as PuTTY) and run the copied command. If you have chosen **Obtain AK/SK** as the installation mode, enter the AK/SK as prompted.
 
    -  When message "ICAgent install success" is displayed, ICAgent has been installed in the **/opt/oss/servicemgr/** directory of the host.
-   -  If the installation fails, uninstall ICAgent and then install it again.
+   -  If the installation fails, uninstall ICAgent and then install it again. For details, see :ref:`Uninstalling ICAgent <lts_02_0014__en-us_topic_0000001167072801_section109081507198>`.
 
-#. Choose **Host Management** > **Hosts** in the navigation pane of the LTS console and check whether the ICAgent status is **Running**.
+#. Choose **Host Management** > **Hosts** in the navigation pane of the LTS console and check whether the host's ICAgent status is **Running**.
+
+   The NIC information is obtained by ICAgent installed on the node using the **ifconfig** command. If **inet** information is not configured for the NIC, the IPv4 address is not reported, and **--** is displayed in the **Host IPv4 Address** column on the **Hosts** page. If **inet6** information is not configured, the IPv6 address is not reported, and **--** is displayed in the **Host IPv6 Address** column on the **Hosts** page.
 
 Initial Installation (Windows)
 ------------------------------
@@ -88,16 +94,24 @@ Initial Installation (Windows)
 
       Uninstalling ICAgent does not delete the files in the corresponding directories. You need to delete them manually if necessary.
 
-   -  To check the ICAgent status, go to the directory where the ICAgent installation package was decompressed, open the Command Prompt, and run the **sc query icagent** command. If **RUNNING** is returned, ICAgent is running. If the message "The specified service does not exist as an installed service" is displayed, ICAgent has been uninstalled.
+   -  To check the ICAgent status, go to the directory where the ICAgent installation package was decompressed, open the Command Prompt, and run the following command. If **RUNNING** is returned, ICAgent is running. If the message "The specified service does not exist as an installed service" is displayed, ICAgent has been uninstalled.
+
+      .. code-block::
+
+         sc query icagent
 
    -  If you reinstall ICAgent after uninstallation and find that the ICAgent status remains pending, end the **icagent.exe** process in **Task Manager** and try installation again.
 
-#. Choose **Host Management** > **Hosts** in the navigation pane of the LTS console and check whether the ICAgent status is **Running**.
+#. Choose **Host Management** > **Hosts** in the navigation pane of the LTS console and check whether the host's ICAgent status is **Running**.
+
+   The NIC information is obtained by ICAgent installed on the node using the **ifconfig** command. If **inet** information is not configured for the NIC, the IPv4 address is not reported, and **--** is displayed in the **Host IPv4 Address** column on the **Hosts** page. If **inet6** information is not configured, the IPv6 address is not reported, and **--** is displayed in the **Host IPv6 Address** column on the **Hosts** page.
 
 Inherited Installation (Linux)
 ------------------------------
 
 Assume that you need to install ICAgent on multiple hosts, and one of the hosts already has ICAgent installed. The ICAgent installation package, **ICProbeAgent.tar.gz**, is in the **/opt/ICAgent/** directory. To install ICAgent on other hosts one by one:
+
+**In inherited installation, the hosts must all belong to the same VPC and be on the same subnet.**
 
 #. Run the following command on the host where ICAgent has been installed, where *x.x.x.x* is the IP address of the host you want to install ICAgent on.
 
@@ -109,8 +123,8 @@ Assume that you need to install ICAgent on multiple hosts, and one of the hosts 
 
    -  If the Expect tool is installed on the host that has ICAgent installed, the ICAgent installation should be able to complete without prompting you for a password. Otherwise, enter the password as prompted.
    -  Ensure that user **root** can run SSH or SCP commands on the host where ICAgent has been installed to remotely communicate with the remote host to install ICAgent.
-   -  When message "ICAgent install success" is displayed, ICAgent has been installed in the **/opt/oss/servicemgr/** directory of the host. You can then choose **Host Management** > **Hosts** in the navigation pane of the LTS console to check the ICAgent status.
-   -  If "ICAgent install success" is not displayed, the installation fails. Uninstall ICAgent and install it again.
+   -  When message "Install ICAgent success" is displayed, ICAgent has been installed in the **/opt/oss/servicemgr/** directory of the host. You can then choose **Host Management** > **Hosts** in the navigation pane of the LTS console to check the ICAgent status.
+   -  If "Install ICAgent success" is not displayed, the installation fails. Uninstall ICAgent and install it again. For details, see :ref:`Uninstalling ICAgent <lts_02_0014__en-us_topic_0000001167072801_section109081507198>`.
 
 Batch Inherited Installation (Linux)
 ------------------------------------
@@ -130,9 +144,9 @@ The IP addresses and **root**'s passwords of all hosts to install ICAgent have b
 
 -  The **iplist.cfg** file contains sensitive information. You are advised to clear it after using it.
 
--  If all hosts share a password, list only IP addresses in the **iplist.cfg** file and enter the password manually during execution. If one of the hosts uses a different password, type the password behind its IP address.
+-  If all servers share the same password, the **iplist.cfg** file only needs to include the IP addresses, not passwords. You need to enter the password during execution. If an IP address has a different password, enter the password after the IP address.
 
-**Procedure**
+Perform the following operations:
 
 #. Run the following command on the host that has ICAgent installed:
 
@@ -142,19 +156,6 @@ The IP addresses and **root**'s passwords of all hosts to install ICAgent have b
 
    Enter the default password for user **root** of the hosts to install ICAgent. If the passwords of all hosts have been configured in the **iplist.cfg** file, press **Enter** to skip this step.
 
-   .. code-block::
+   Wait for a while. When message "Install ICAgent success" is displayed, ICAgent has been installed on all the hosts listed in the configuration file.
 
-      batch install begin
-      Please input default passwd:
-      send cmd to 192.168.0.109
-      send cmd to 192.168.0.39
-      2 tasks running, please wait...
-      2 tasks running, please wait...
-      2 tasks running, please wait...
-      End of install agent: 192.168.0.39
-      End of install agent: 192.168.0.109
-      All hosts install icagent finish.
-
-   Wait for a while. When message "All hosts install icagent finish." is displayed, ICAgent has been installed on all the hosts listed in the configuration file.
-
-#. Choose **Host Management** > **Hosts** in the navigation pane of the LTS console to check the :ref:`ICAgent status <lts_02_0014__en-us_topic_0000001167072801_section18919294522>`.
+#. Choose **Host Management** > **Hosts** in the navigation pane of the LTS console to check the hosts' ICAgent statuses. For details, see :ref:`Checking the ICAgent Status <lts_02_0014__en-us_topic_0000001167072801_section18919294522>`.

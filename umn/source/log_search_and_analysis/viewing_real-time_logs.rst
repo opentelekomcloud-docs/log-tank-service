@@ -10,9 +10,7 @@ Logs are reported to LTS about every minute, allowing you to view them on the **
 Prerequisites
 -------------
 
--  You have created log groups and log streams.
--  You have performed operations provided in :ref:`Installing ICAgent (Intra-Region Hosts) <lts_02_0013>`.
--  You have configured log collection rules.
+Logs have been reported to the **Real-Time Logs** page.
 
 
 Viewing Real-Time Logs
@@ -24,23 +22,22 @@ Log data is usually loaded every 5 seconds. However, if no data is generated in 
 
 #. Log in to the management console and choose **Management & Deployment** > **Log Tank Service**. The **Log Management** page is displayed by default.
 
-#. Click the target log group or stream to access the log stream details page.
+#. Click the target log group or stream to access the log details page.
 
-#. Click the **Real-Time Logs** tab to view the real-time logs.
+#. Click the **Real-Time Logs** tab.
 
-   Filter host and Kubernetes logs by source.
+   Logs are reported to LTS once every minute. You may wait for at most 1 minute before the logs are displayed.
 
-   -  If **Source** is set to **Host**, set the host IP address and file path.
-   -  If **Source** is set to **K8s**, set the instance name, container name, and file path.
+   You can perform the following operations on the reported real-time logs:
 
-   Logs are reported to LTS once every minute. You may wait for at most one minute before the logs are displayed.
+   -  Select **Host** for **Source** and set a host IP address and file path to filter logs.
 
-   In addition, you can customize log display by clicking **Clear** or **Pause** in the upper right corner.
+   -  Select **Host** for **K8s** and set an instance or container name or a file path to filter logs.
 
-   -  **Filter**: Obtain data from the index configuration, structuring configuration, and latest logs.
+   -  **Filter**: Select fields to filter field information obtained from the index configurations, structured configurations, and latest logs.
 
-   -  **Clear**: Displayed logs will be cleared from the real-time view.
+   -  **Clear**: Clear all logs displayed in the **Log Content** area.
 
-   -  **Pause**: Loading of new logs to the real-time view will be paused.
+   -  **Pause**: Pause the loading of new logs to the real-time view.
 
       After you click **Pause**, the button changes to **Continue**. You can click **Continue** to resume the log loading to the real-time view.

@@ -47,8 +47,6 @@ Procedure
 
    For details, see :ref:`Step 3: Configure the Collection <lts_04_1031__en-us_topic_0000001118501736_section196913102330>`.
 
-#. (Optional) Configure structured logs.
-
 #. (Optional) Configure indexes.
 
 #. Click **Submit** Click **Back to Ingestion Configurations** to check the ingestion details. You can also click **View Log Stream** to view the log stream to which logs are ingested.

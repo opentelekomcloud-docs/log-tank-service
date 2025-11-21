@@ -16,15 +16,19 @@ Creating an Agency
 
    .. table:: **Table 1** Agency parameters
 
-      =============== ====================================================
-      Parameter       Description
-      =============== ====================================================
-      Agency Name     Set the agency name. For example, **lts_ecm_trust**.
-      Agency Type     Select **Cloud service**.
-      Cloud Service   Select **ECS**.
-      Validity Period Select **Unlimited**.
-      Description     (Optional) Provide details about the agency.
-      =============== ====================================================
+      +-----------------+--------------------------------------------------------------------+
+      | Parameter       | Description                                                        |
+      +=================+====================================================================+
+      | Agency Name     | Set the agency name. For example, **lts_ecm_trust**.               |
+      +-----------------+--------------------------------------------------------------------+
+      | Agency Type     | Select **Cloud service**.                                          |
+      +-----------------+--------------------------------------------------------------------+
+      | Cloud Service   | Select **Elastic Cloud Server (ECS) and Bare Metal Server (BMS)**. |
+      +-----------------+--------------------------------------------------------------------+
+      | Validity Period | Select **Unlimited**.                                              |
+      +-----------------+--------------------------------------------------------------------+
+      | Description     | (Optional) Provide details about the agency.                       |
+      +-----------------+--------------------------------------------------------------------+
 
 #. Click **Next**.
 #. Search for **LTS Administrator** and **APM Administrator** in the permission search box and select them.

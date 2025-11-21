@@ -14,14 +14,14 @@ Before searching and analyzing reported logs, you need to configure structuring 
 
 Log data can be structured or unstructured.
 
--  Structured data refers to the data described using digits or unified data models. It has a fixed length and format, which facilitate storage and analysis.
--  Unstructured data has no pre-defined data models and cannot be fit into two-dimensional tables of databases. It is difficult to directly analyze unstructured data.
+-  Structured data is organized using data models such as tables and relational databases. It has a strict length and format, facilitating storage and analysis.
+-  Unstructured data has no pre-defined data models and cannot be fit into two-dimensional tables of databases. It is difficult to analyze unstructured data.
 
-Log structuring extracts logs with fixed formats or high similarity from log streams and filters out irrelevant logs. .
+Log structuring extracts logs with fixed formats or high similarity from log streams and filters out irrelevant logs.
 
-Log structuring parsing is a process of converting log data from unstructured or semi-structured to structured for better storage, query, and analysis, improving log data readability, searchability, and query efficiency.
+Log structuring parsing converts unstructured or semi-structured log data into a structured format for better storage, query, and analysis, improving log data readability, searchability, and query efficiency.
 
 Log Search
 ----------
 
-After structuring the logs, use LTS :ref:`search syntax <lts_05_0111>` to set search criteria with higher efficiency. For details, see :ref:`Accessing the Log Search Page <lts_05_0005>`.
+After structuring the logs, use LTS :ref:`search syntax <lts_05_0111>` to set search criteria with higher efficiency. For details, see :ref:`Searching for Logs <lts_05_0005>`.

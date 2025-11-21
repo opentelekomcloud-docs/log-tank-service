@@ -17,7 +17,7 @@ When Cloud Trace Service (CTS) is connected to LTS, a log group and log stream a
 
 #. Confirm the configurations and click **Configure**.
 
-#. Access the LTS console, choose **Log Transfer** in the navigation pane on the left, and click **Configure Log Transfer** in the upper right corner.
+#. Access the LTS console, choose **Log Transfer** in the navigation pane, and click **Configure Log Transfer** in the upper right corner.
 
    Set **Log Group Name** to **CTS** and **Log Stream Name** to **system-trace**. Specify other parameters and click **OK** to transfer CTS logs to the selected OBS bucket.
 

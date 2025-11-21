@@ -5,7 +5,7 @@
 Installing ICAgent
 ==================
 
-ICAgent is the log collection tool of LTS. Install ICAgent on a host from which you want to collect logs.
+ICAgent is the log collection tool of LTS. Install it on a host from which you want to collect logs.
 
 If ICAgent has been installed on the host when you use other cloud services, skip the installation.
 
@@ -50,6 +50,6 @@ Installing ICAgent
 
 #. Click **Copy Command** to copy the ICAgent installation command.
 
-#. Log in as user **root** to the host (for example, by using a remote login tool such as PuTTY). Run the copied command and enter the obtained AK/SK to install ICAgent.
+#. Log in as user **root** to the host (by using a remote login tool such as PuTTY). Run the copied command and enter the obtained AK/SK to install ICAgent.
 
-   When message **ICAgent install success** is displayed, ICAgent has been installed in the **/opt/oss/servicemgr/** directory of the host. You can then choose **Host Management** > **Hosts** in the navigation pane of the LTS console to check the ICAgent status.
+   When message "ICAgent install success" is displayed, ICAgent has been installed in the **/opt/oss/servicemgr/** directory of the host. You can then choose **Host Management** > **Hosts** in the navigation pane of the LTS console to check the ICAgent status.
