@@ -23,16 +23,10 @@ POST /v2/{project_id}/lts/groups/{log_group_id}/streams/{log_stream_id}/tenant/c
    | Parameter       | Mandatory       | Type            | Description                                                                                                                                                                                                                                                                               |
    +=================+=================+=================+===========================================================================================================================================================================================================================================================================================+
    | project_id      | Yes             | String          | Project ID. For details about how to obtain it, see `Obtaining the Account ID, Project ID, Log Group ID, and Log Stream ID <https://docs.otc.t-systems.com/log-tank-service/api-ref/appendix/obtaining_the_account_id_project_id_log_group_id_and_log_stream_id.html#lts-api-0006>`__.    |
-   |                 |                 |                 |                                                                                                                                                                                                                                                                                           |
-   |                 |                 |                 | Value length: 32 characters                                                                                                                                                                                                                                                               |
    +-----------------+-----------------+-----------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | log_group_id    | Yes             | String          | Log group ID. For details about how to obtain it, see `Obtaining the Account ID, Project ID, Log Group ID, and Log Stream ID <https://docs.otc.t-systems.com/log-tank-service/api-ref/appendix/obtaining_the_account_id_project_id_log_group_id_and_log_stream_id.html#lts-api-0006>`__.  |
-   |                 |                 |                 |                                                                                                                                                                                                                                                                                           |
-   |                 |                 |                 | Value length: 36 characters                                                                                                                                                                                                                                                               |
    +-----------------+-----------------+-----------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | log_stream_id   | Yes             | String          | Log stream ID. For details about how to obtain it, see `Obtaining the Account ID, Project ID, Log Group ID, and Log Stream ID <https://docs.otc.t-systems.com/log-tank-service/api-ref/appendix/obtaining_the_account_id_project_id_log_group_id_and_log_stream_id.html#lts-api-0006>`__. |
-   |                 |                 |                 |                                                                                                                                                                                                                                                                                           |
-   |                 |                 |                 | Value length: 36 characters                                                                                                                                                                                                                                                               |
    |                 |                 |                 |                                                                                                                                                                                                                                                                                           |
    |                 |                 |                 | A write rate exceeding 100 MB/s per log stream may cause log losses.                                                                                                                                                                                                                      |
    +-----------------+-----------------+-----------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -42,21 +36,13 @@ Request Parameters
 
 .. table:: **Table 2** Request header parameters
 
-   +-----------------+-----------------+-----------------+-----------------------------------------------------------+
-   | Parameter       | Mandatory       | Type            | Description                                               |
-   +=================+=================+=================+===========================================================+
-   | X-Auth-Token    | Yes             | String          | Indicates the user token obtained from IAM.               |
-   |                 |                 |                 |                                                           |
-   |                 |                 |                 | Minimum length: 1,000 characters                          |
-   |                 |                 |                 |                                                           |
-   |                 |                 |                 | Maximum length: 2,000 characters                          |
-   +-----------------+-----------------+-----------------+-----------------------------------------------------------+
-   | Content-Type    | Yes             | String          | Set this parameter to **application/json;charset=UTF-8**. |
-   |                 |                 |                 |                                                           |
-   |                 |                 |                 | Minimum length: 30 characters                             |
-   |                 |                 |                 |                                                           |
-   |                 |                 |                 | Maximum length: 30 characters                             |
-   +-----------------+-----------------+-----------------+-----------------------------------------------------------+
+   +--------------+-----------+--------+--------------------------------------------------------------------------------+
+   | Parameter    | Mandatory | Type   | Description                                                                    |
+   +==============+===========+========+================================================================================+
+   | X-Auth-Token | Yes       | String | User token obtained from IAM.                                                  |
+   +--------------+-----------+--------+--------------------------------------------------------------------------------+
+   | Content-Type | Yes       | String | Message body format. Set this parameter to **application/json;charset=UTF-8**. |
+   +--------------+-----------+--------+--------------------------------------------------------------------------------+
 
 .. table:: **Table 3** Request body parameters
 
@@ -70,6 +56,8 @@ Request Parameters
    | contents          | Yes             | Array of String | Log content.                                                                                                                                                                                                                                                                                  |
    +-------------------+-----------------+-----------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | labels            | Yes             | Object          | Custom labels.                                                                                                                                                                                                                                                                                |
+   |                   |                 |                 |                                                                                                                                                                                                                                                                                               |
+   |                   |                 |                 | Do not set field names to be the same as system reserved fields. Otherwise, problems such as duplicate field names and inaccurate query may occur.                                                                                                                                            |
    +-------------------+-----------------+-----------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | tenant_project_id | No              | String          | Tenant project ID. For details about how to obtain it, see `Obtaining the Account ID, Project ID, Log Group ID, and Log Stream ID <https://docs.otc.t-systems.com/log-tank-service/api-ref/appendix/obtaining_the_account_id_project_id_log_group_id_and_log_stream_id.html#lts-api-0006>`__. |
    +-------------------+-----------------+-----------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -77,7 +65,7 @@ Request Parameters
 Response Parameters
 -------------------
 
-When the status code is **200**, the response parameters are as follows:
+**Status code: 200**
 
 .. table:: **Table 4** Response body parameters
 
@@ -89,7 +77,7 @@ When the status code is **200**, the response parameters are as follows:
    result    String Response result.
    ========= ====== ================
 
-When the status code is **400**, the response parameters are as follows:
+**Status code: 400**
 
 .. table:: **Table 5** Response body parameters
 
@@ -101,7 +89,7 @@ When the status code is **400**, the response parameters are as follows:
    result    String Response result.
    ========= ====== ================
 
-When the status code is **401**, the response parameters are as follows:
+**Status code: 401**
 
 .. table:: **Table 6** Response body parameters
 
@@ -113,7 +101,7 @@ When the status code is **401**, the response parameters are as follows:
    result    String Response result.
    ========= ====== ================
 
-When the status code is **500**, the response parameters are as follows:
+**Status code: 500**
 
 .. table:: **Table 7** Response body parameters
 
@@ -125,7 +113,7 @@ When the status code is **500**, the response parameters are as follows:
    result    String Response result.
    ========= ====== ================
 
-When the status code is **503**, the response parameter is as follows:
+**Status code: 503**
 
 .. table:: **Table 8** Response body parameter
 
@@ -145,14 +133,14 @@ Example Request
    POST https://{access_IP_address:8102}/v2/{project_id}/lts/groups/{log_group_id}/streams/{log_stream_id}/tenant/contents
 
    {
-       "log_time_ns": 1586850540000000000,
-       "contents": [
-           "Fri Feb  1 07:48:04 UTC 2019 0\n",
-           "Sat April 18 16:04:04 UTC 2019"
-       ],
-       "labels": {
-           "user_tag": "string"
-       }
+    "log_time_ns": 1586850540000000000,
+    "contents": [
+     "Fri Feb  1 07:48:04 UTC 2019 0\n",
+     "Sat April 18 16:04:04 UTC 2019"
+    ],
+    "labels": {
+     "user_tag": "string"
+    }
    }
 
 Example Response
@@ -172,7 +160,7 @@ Logs are reported.
 
 Example response with status code **401**:
 
-The authentication information is incorrect or invalid.
+The authorization information provided by the client is incorrect or invalid.
 
 .. code-block::
 
@@ -188,11 +176,11 @@ Status Code
 +-------------+------------------------------------------------------------------------------------------------------+
 | Status Code | Description                                                                                          |
 +=============+======================================================================================================+
-| 200         | The request has succeeded.                                                                           |
+| 200         | Logs are reported.                                                                                   |
 +-------------+------------------------------------------------------------------------------------------------------+
 | 400         | The request is invalid. Modify the request based on the description in **error_msg** before a retry. |
 +-------------+------------------------------------------------------------------------------------------------------+
-| 401         | The authentication information is incorrect or invalid.                                              |
+| 401         | The authorization information provided by the client is incorrect or invalid.                        |
 +-------------+------------------------------------------------------------------------------------------------------+
 | 500         | An internal error occurred.                                                                          |
 +-------------+------------------------------------------------------------------------------------------------------+

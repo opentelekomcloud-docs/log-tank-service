@@ -15,5 +15,6 @@ Log Tank Service - User Guide
    log_alarms/index
    log_transfer/index
    configuration_center/index
+   querying_real-time_lts_traces
    faqs/index
    change_history

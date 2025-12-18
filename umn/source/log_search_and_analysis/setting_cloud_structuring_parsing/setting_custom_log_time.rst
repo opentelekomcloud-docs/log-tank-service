@@ -5,7 +5,7 @@
 Setting Custom Log Time
 =======================
 
-When configuring log ingestion, you can enable **Custom Log Time** to set a time field in the logs as the ingestion configuration time.
+You can enable **Custom Log Time** to display the custom log time on the **Log Search** tab page. If **Custom Log Time** is disabled, the log collection time is displayed as the log time on this tab page.
 
 Enabling Custom Log Time
 ------------------------
@@ -14,7 +14,7 @@ Enabling Custom Log Time
 
 #. Click the target log group or log stream to access the log stream details page.
 
-#. On the **Log Search** tab page, click |image1| in the upper right corner. On the page displayed, click the **Cloud Structuring Parsing** tab. For details, see :ref:`Setting Cloud Structuring Parsing <lts_0823>`.
+#. On the **Log Search** tab page, click **Log Settings** in the upper right corner. On the displayed page, click the **Cloud Structuring Parsing** tab. For details, see :ref:`Setting Cloud Structuring Parsing <lts_0823>`.
 
 #. After cloud structuring parsing is configured, enable **Custom Log Time** and specify the following parameters.
 
@@ -132,5 +132,3 @@ Examples
    2023-01-02T15:04:05Z07:00      yyyy-MM-dd'T'HH:mm:ss Z     RFC3339
    2022-12-11 15:05:07            yyyy-MM-dd HH:mm:ss         Custom
    ============================== =========================== =============
-
-.. |image1| image:: /_static/images/en-us_image_0000001991274437.png

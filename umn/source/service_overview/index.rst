@@ -7,7 +7,7 @@ Service Overview
 
 -  :ref:`What Is LTS? <lts_01_0002>`
 -  :ref:`Basic Concepts <lts_01_0003>`
--  :ref:`Features <lts_01_0004>`
+-  :ref:`Functions <lts_01_0004>`
 -  :ref:`Constraints <lts-0740>`
 -  :ref:`Permissions <lts-03205>`
 -  :ref:`Related Services <lts_01_0005>`
@@ -18,7 +18,7 @@ Service Overview
 
    what_is_lts
    basic_concepts
-   features
+   functions
    constraints
    permissions
    related_services

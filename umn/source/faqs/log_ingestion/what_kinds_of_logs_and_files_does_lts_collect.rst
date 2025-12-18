@@ -14,4 +14,4 @@ Logs That Can Be Collected by LTS:
 Files That Can Be Collected by LTS:
 -----------------------------------
 
-If the collection path is set to a directory, for example, **/var/logs/**, only .log, .trace, and .out files in the directory are collected. If the collection path is set to a file name (only text files are supported), the specified file is collected. Note that LTS only collects logs generated in the last 7 days (depending on the local time zone of the host).
+If the collection path is set to a directory, for example, **/var/logs/**, only .log, .trace, and .out files in the directory are collected. If the collection path is set to a file name (only text files are supported), the specified file is collected. Note that LTS only collects logs generated in the last seven days (depending on the local time zone of the host).

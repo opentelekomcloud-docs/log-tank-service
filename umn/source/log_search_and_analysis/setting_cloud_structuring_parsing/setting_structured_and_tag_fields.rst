@@ -37,7 +37,7 @@ You can set extracted fields after cloud structuring. For details, see :ref:`Tab
 
 When you use regular expressions (manually entered), JSON, delimiters, Nginx, or custom templates to structure logs, field names:
 
-Can contain 1 to 64 characters. Use only letters, digits, hyphens (-), underscores (_), and periods (.). Do not use underscores before another underscore or a period. Do not start or end with a period.
+Enter 1 to 64 characters. Use only letters, digits, hyphens (-), underscores (_), and periods (.). Do not use an underscore before another underscore or a period. Do not start or end with a period.
 
 Setting Tag Fields
 ------------------
@@ -46,14 +46,10 @@ When configuring log structuring, you can set the tag fields for the log informa
 
 #. In **Step 2 Extract fields**, click the **Tag Fields** tab and **Add Field**.
 
-#. In the **Field** column, enter a name for the tag field, for example, **hostIP**.
+#. In the **Field** column, enter a name for the tag field.
 
-   If you configure tag fields for a structuring rule that was created before the function of tag fields was brought online, no example values will be shown with the tag fields.
+   If you configure tag fields for a structuring rule created before the function of tag fields was brought online, no example values will be shown with the tag fields.
 
 #. To add more fields, click **Add Field**.
 
 #. Click **Save**.
-
-   -  Tag fields can be the following system fields: **category**, **clusterId**, **clusterName**, **containerName**, **hostIP**, **hostId**, **hostName**, **nameSpace**, **pathFile**, and **podName**.
-   -  Tag fields cannot be the following system fields: **groupName**, **logStream**, **lineNum**, **content**, **logContent**, **logContentSize**, and **collectTime**.
-   -  You can configure both field extraction and tag fields during log structuring.

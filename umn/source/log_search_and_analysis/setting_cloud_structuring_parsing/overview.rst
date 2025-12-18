@@ -9,4 +9,4 @@ Log data can be structured or unstructured. Structured data is quantitative data
 
 During log structuring, logs with fixed or similar formats are extracted from a log stream based on your defined structuring method and irrelevant logs are filtered out.
 
-Log structuring parsing is a process of converting log data from unstructured or semi-structured to structured for better storage, query, and analysis, improving log data readability, searchability, and query efficiency.
+Log structuring parsing converts unstructured or semi-structured log data into a structured format for better storage, query, and analysis, improving log data readability, searchability, and query efficiency.

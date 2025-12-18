@@ -26,7 +26,7 @@ If you choose cross-account ingestion as the log ingestion type, perform the fol
 
 #. Choose **Log Ingestion** > **Ingestion Center** in the navigation pane and click **Cross-Account Ingestion - Log Stream Mapping**.
 
-   You can also choose **Log Ingestion** > **Ingestion Management** in the navigation pane and click **Ingest Log**. On the displayed page, click **Cross-Account Ingestion - Log Stream Mapping**.
+   You can also choose **Log Ingestion** > **Ingestion Management** in the navigation pane and click **Create**. On the displayed page, click **Cross-Account Ingestion - Log Stream Mapping**.
 
 #. Select an agency.
 

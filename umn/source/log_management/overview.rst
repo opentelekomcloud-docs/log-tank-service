@@ -5,10 +5,10 @@
 Overview
 ========
 
-LTS manages logs by log group and stream for easy classification. Before using LTS, create a log group and then multiple log streams in the group. By collecting and storing log data in different log streams, you can search, analyze, and transfer log data and set alarm rules by log stream.
+Log groups and log streams are the basic units for managing logs in LTS. Create log groups and streams before using LTS.
 
-To better understand and use LTS, perform the following steps:
+A log group comprises log streams and categorizes them, but does not store any log data itself. Instead, collected logs are stored in different log streams by log type, enabling further log grouping management.
 
-#. Create a log group. For details, see :ref:`Managing Log Groups <lts_04_0003>`.
-#. Create a log stream. For details, see :ref:`Managing Log Streams <lts_04_0004>`.
-#. On the **Log Management** page, view resource statistics, and the **My Favorites**, **My Favorites(Local Cache)**, and **Recently Visited** lists. For details, see :ref:`Viewing Log Management <lts_04_1154>`.
+-  Create log groups in a specified region as required. For details, see :ref:`Managing Log Groups <lts_04_0003>`.
+-  Store log data in log streams. For details, see :ref:`Managing Log Streams <lts_04_0004>`.
+-  On the **Log Management** page, view resource statistics, and the **My Favorites**, **My Favorites(Local Cache)**, and **Recently Visited** lists. For details, see :ref:`Viewing Log Management <lts_04_1154>`.

@@ -6,7 +6,7 @@ Log Search and Analysis
 =======================
 
 -  :ref:`Overview <lts_05_0100>`
--  :ref:`Setting Indexes <lts_05_0008>`
+-  :ref:`Configuring Log Indexing <lts_05_0008>`
 -  :ref:`Setting Cloud Structuring Parsing <lts_0821>`
 -  :ref:`Searching Logs <lts_05_0110>`
 -  :ref:`Viewing Real-Time Logs <lts_05_0006>`
@@ -16,7 +16,7 @@ Log Search and Analysis
    :hidden: 
 
    overview
-   setting_indexes
+   configuring_log_indexing
    setting_cloud_structuring_parsing/index
    searching_logs/index
    viewing_real-time_logs

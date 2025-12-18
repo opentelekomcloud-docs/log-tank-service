@@ -7,4 +7,4 @@ Ingesting DDS Logs to LTS
 
 LTS can collect logs from DDS.
 
-For details, see *Document Database Service (DDS) Usage Guide* > "User Guide" > "Logs" > "Log Reporting".
+For details, see `Log Reporting <https://docs.otc.t-systems.com/document-database-service/umn/log_management/log_reporting.html#en-us-topic-0000002142634625>`__.

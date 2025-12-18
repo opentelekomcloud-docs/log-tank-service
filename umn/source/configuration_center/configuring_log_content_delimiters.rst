@@ -17,7 +17,7 @@ Precautions
 -----------
 
 -  Your custom delimiters are applicable only to the log events generated after the delimiters are configured.
--  The delimiter configured on the **Delimiters** tab page takes effect for all log streams in the current region. For details about how to configure delimiters for a single log stream, see :ref:`Setting Indexes <lts_05_0008>`.
+-  Delimiters configured on the **Delimiters** tab page take effect for all log streams in the current region. To configure delimiters for a single log stream, configure them on the **Index Settings** tab page.
 
 Procedure
 ---------

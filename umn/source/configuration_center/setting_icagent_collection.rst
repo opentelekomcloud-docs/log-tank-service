@@ -17,5 +17,5 @@ Setting Collection
    -  **ICAgent Collection** is toggled on by default. If you do not need to collect logs, toggle it off to reduce resource usage.
    -  After it is toggled off, ICAgent will stop collecting logs, and the log collection function on the AOM console will also be disabled.
 
-#. Toggle the **Collect Syslog Logs to AOM** switch to set whether ICAgent collects Syslogs to AOM 1.0. If it is toggled off, ICAgent does not collect Syslog logs to AOM 1.0. This function is only available with ICAgent 5.12.182 and later.
+#. Toggle the **Collect Syslog Logs to AOM** switch to set whether ICAgent collects syslog logs to AOM 1.0. If it is toggled off, ICAgent does not collect syslog logs to AOM 1.0. This function is only available with ICAgent 5.12.182 and later.
 #. **Output to AOM**: Select a CCE cluster and toggle on or off the **Apply to Cluster** switch for it. If it is toggled off, ICAgent does not collect the cluster stdout logs to AOM. This function is only available with ICAgent 5.12.133 and later. You are advised to collect container standard output to LTS instead of AOM. For details, see :ref:`Ingesting CCE Application Logs to LTS <lts_04_0511>`.

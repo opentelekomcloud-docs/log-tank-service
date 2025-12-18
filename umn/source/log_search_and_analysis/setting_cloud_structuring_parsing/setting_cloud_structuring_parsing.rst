@@ -9,7 +9,7 @@ LTS provides five log structuring modes: regular expressions, JSON, delimiters, 
 
 -  :ref:`Regular Expressions <lts_0823__en-us_topic_0000001532627437_section1193293314459>`: This mode applies to scenarios where each line in the log text is a raw log event and each log event can be extracted into multiple key-value pairs based on regular expressions. To use this mode to extract fields, you need to enter a log sample and customize a regular expression. Then, LTS extracts the corresponding key-value pairs based on the capture group in the regular expression.
 -  :ref:`JSON <lts_0823__en-us_topic_0000001532627437_section11217131014476>`: This mode applies to scenarios where each line in the log text is a raw log event and each log event can be extracted into multiple key-value pairs based on the JSON parsing rule.
--  :ref:`Delimiter <lts_0823__en-us_topic_0000001532627437_section1626915495415>`: This mode applies to scenarios where each line in the log text is a raw log event and each log event can be extracted into multiple key-value pairs based on specified delimiters (such as colons, spaces, or characters).
+-  :ref:`Delimiter <lts_0823__en-us_topic_0000001532627437_section1626915495415>`: This mode applies to scenarios where each line in the log text is a raw log event and each log event can be extracted into multiple key-value pairs based on specified delimiters (such as colons, spaces, and characters).
 -  :ref:`Nginx <lts_0823__en-us_topic_0000001532627437_section1710931975616>`: This mode applies to scenarios where each line in the log text is a raw log event, each log event complies with the Nginx format, and the access log format can be defined by the **log_format** command.
 -  :ref:`Structuring Template <lts_0823__en-us_topic_0000001532627437_section81501427185813>`: This mode applies to scenarios where the log structure is complex or key-value extraction needs to be customized. You can use a built-in system template or a custom template to extract fields.
 
@@ -33,15 +33,36 @@ Cloud Structuring Parsing
 
 #. Log in to the management console and choose **Management & Deployment** > **Log Tank Service**. The **Log Management** page is displayed by default.
 
-#. Click the target log group or log stream.
+#. Click the target log group or log stream to access the log stream details page.
 
-#. On the log stream details page, click |image1| in the upper right corner. On the page displayed, click the **Cloud Structuring Parsing** tab to configure log structuring.
+#. On the **Log Search** tab page, click **Log Settings** in the upper right corner. On the displayed page, click the **Cloud Structuring Parsing** tab to configure log structuring.
+
+   -  If **Retain Raw Logs** is enabled, raw logs will be stored in LTS as the value of the **content** field. The **content** field is also counted in both resource statistics and charging.
+   -  If **Upload Parsing Failure Log** is enabled, raw logs will be uploaded to LTS as the value of the **\_content_parse_fail\_** field.
+   -  The following describes how logs are reported when **Retain Raw Logs** and **Upload Parsing Failure Log** are enabled or disabled.
+
+      .. table:: **Table 1** Log reporting description
+
+         +--------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------+
+         | Parameter                                  | Description                                                                                                                                     |
+         +============================================+=================================================================================================================================================+
+         | -  **Retain Raw Logs** enabled             | -  Parsing succeeded: The parsed log and the raw log's **content** field are reported.                                                          |
+         | -  **Upload Parsing Failure Log** enabled  | -  Parsing failed: To avoid redundancy, only the raw log's **content** field is reported. The **\_content_parse_fail\_** field is not reported. |
+         +--------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------+
+         | -  **Retain Raw Logs** enabled             | -  Parsing succeeded: The parsed log and the raw log's **content** field are reported.                                                          |
+         | -  **Upload Parsing Failure Log** disabled | -  Parsing failed: The raw log's **content** field is reported.                                                                                 |
+         +--------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------+
+         | -  **Retain Raw Logs** disabled            | -  Parsing succeeded: The parsed log is reported.                                                                                               |
+         | -  **Upload Parsing Failure Log** enabled  | -  Parsing failed: The **\_content_parse_fail\_** field is reported.                                                                            |
+         +--------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------+
+         | -  **Retain Raw Logs** disabled            | -  Parsing succeeded: The parsed log is reported.                                                                                               |
+         | -  **Upload Parsing Failure Log** disabled | -  Parsing failed: Only the system built-in and **label** fields are reported.                                                                  |
+         +--------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------+
 
    -  The following system fields cannot be extracted during log structuring: **groupName**, **logStream**, **lineNum**, **content**, **logContent**, **logContentSize**, **collectTime**, **category**, **clusterId**, **clusterName**, **containerName**, **hostIP**, **hostId**, **hostName**, **nameSpace**, **pathFile**, and **podName**.
-
    -  :ref:`Regular Expressions <lts_0823__en-us_topic_0000001532627437_section1193293314459>`: Extract fields using regular expressions.
    -  :ref:`JSON <lts_0823__en-us_topic_0000001532627437_section11217131014476>`: Extract key-value pairs from JSON log events.
-   -  :ref:`Delimiter <lts_0823__en-us_topic_0000001532627437_section1626915495415>`: Extract fields using delimiters (such as commas or spaces).
+   -  :ref:`Delimiter <lts_0823__en-us_topic_0000001532627437_section1626915495415>`: Extract fields using delimiters (such as commas and spaces).
    -  :ref:`Nginx <lts_0823__en-us_topic_0000001532627437_section1710931975616>`: Customize the format of access logs by using the **log_format** command.
    -  :ref:`Structuring Template <lts_0823__en-us_topic_0000001532627437_section81501427185813>`: Extract fields using a custom or system template.
 
@@ -53,9 +74,9 @@ Cloud Structuring Parsing
 
 #. Modify or delete the configured structuring configuration.
 
-   -  On the **Cloud Structuring Parsing** tab page, click |image2| to modify the structuring configuration.
+   -  On the **Cloud Structuring Parsing** tab page, click |image1| to modify the structuring configuration.
 
-   -  On the **Cloud Structuring Parsing** tab page, click |image3| to delete the structuring configuration.
+   -  On the **Cloud Structuring Parsing** tab page, click |image2| to delete the structuring configuration.
 
       Deleted structuring configurations cannot be restored. Exercise caution when performing this operation.
 
@@ -80,8 +101,8 @@ If you choose regular expressions, fields are extracted based on your defined re
 
 2. Extract fields. Extracted fields are shown with their example values. You can extract fields in two ways:
 
-   -  **Auto generate**: Select the log content you want to extract as a field in the sample log event. In the dialog box displayed, set the field name. The name must start with a letter and contain only letters and digits. Then click **Add**.
-   -  **Manually enter**: Enter a regular expression in the text box and click **Extract Field**. A regular expression may contain multiple capturing groups, which group strings with parentheses. There are three types of capturing groups:
+   -  **Auto Generation Mode**: Select the log content you want to extract as a field in the sample log event. In the displayed dialog box, set a field name and click **Add**. A field name can contain only letters, digits, hyphens (-), underscores (_), and periods (.). It cannot start or end with a period, or end with double underscores (__).
+   -  **Manual Input Mode**: Enter a regular expression in the text box and click **Extract Field**. A regular expression may contain multiple capturing groups, which group strings with parentheses. There are three types of capturing groups:
 
       -  (*exp*): Capturing groups are numbered by counting their opening parentheses from left to right. The numbering starts with 1.
       -  (?<*name*>\ *exp*): named capturing group. It captures text that matches *exp* into the group *name*. The group name must start with a letter and contain only letters and digits. A group is recalled by group name or number.
@@ -106,15 +127,12 @@ If you choose **JSON**, JSON logs are split into key-value pairs.
 
    .. code-block::
 
-      {"a1": "a1", "b1": "b1", "c1": "c1", "d1": "d1"}
+      {
+      "start_time": 1749088800000,
+      "end_time": 1749089730214
+      }
 
-
-   .. figure:: /_static/images/en-us_image_0000001748984554.png
-      :alt: **Figure 2** Extraction results
-
-      **Figure 2** Extraction results
-
-   After fields are extracted, check and edit the fields and save them as a template if needed. For details about rules for configuring extracted fields, see :ref:`Setting Structured Fields <lts_0825__en-us_topic_0000001481908120_section13954165812210>`.
+   After fields are extracted, check and edit the fields and save them as a template if needed. For details about rules for configuring structured fields, see :ref:`Setting Structured Fields <lts_0825__en-us_topic_0000001481908120_section13954165812210>`.
 
    -  The **float** data type has 16 digit precision. If a value contains more than 16 valid digits, the extracted content is incorrect, which affects quick analysis. In this case, you are advised to change the field type to **string**.
    -  If the data type of the extracted fields is set to **long** and the log content contains more than 16 valid digits, only the first 16 valid digits are displayed, and the subsequent digits are changed to 0.
@@ -141,7 +159,7 @@ Logs can be parsed by delimiters, such as commas (,), spaces, or other special c
 
 #. Select or customize a delimiter.
 
-   -  For invisible characters, enter hexadecimal characters starting with 0x. The length ranges from 0 to 4 characters. There are 32 invisible characters in total.
+   -  For invisible characters, enter up to 4 hexadecimal characters starting with **0x** for each delimiter, for example, **0x01**. A maximum of 32 invisible characters can be entered.
    -  For custom characters, enter 1 to 10 characters, each as an independent delimiter.
    -  For a custom string, enter 1 to 30 characters as one whole delimiter.
 
@@ -155,11 +173,11 @@ Logs can be parsed by delimiters, such as commas (,), spaces, or other special c
 
 
    .. figure:: /_static/images/en-us_image_0000001795825789.png
-      :alt: **Figure 3** Intelligent extraction results
+      :alt: **Figure 2** Intelligent extraction results
 
-      **Figure 3** Intelligent extraction results
+      **Figure 2** Intelligent extraction results
 
-   After fields are extracted, check and edit the fields and save them as a template if needed. For details about rules for configuring extracted fields, see :ref:`Setting Structured Fields <lts_0825__en-us_topic_0000001481908120_section13954165812210>`.
+   After fields are extracted, check and edit the fields and save them as a template if needed. For details about rules for configuring structured fields, see :ref:`Setting Structured Fields <lts_0825__en-us_topic_0000001481908120_section13954165812210>`.
 
    The **float** data type has seven digit precision.
 
@@ -188,9 +206,7 @@ You can customize the format of access logs by the **log_format** command.
 
    In standard Nginx configuration files, the portion starting with **log_format** indicates the log configuration.
 
-   Log format
-
-   -  Default Nginx log format:
+   -  The default configuration is as follows. For details about the default fields, see :ref:`Table 2 <lts_0823__en-us_topic_0000001532627437_table591872015439>`. For details about the common extended fields, see :ref:`Table 3 <lts_0823__en-us_topic_0000001532627437_table18924320134315>`.
 
       .. code-block::
 
@@ -198,24 +214,86 @@ You can customize the format of access logs by the **log_format** command.
                                      '$status $body_bytes_sent "$http_referer" '
                                      '"$http_user_agent" "$http_x_forwarded_for"';
 
+      .. _lts_0823__en-us_topic_0000001532627437_table591872015439:
+
+      .. table:: **Table 2** Default fields
+
+         +----------------------+--------------------------------------------------------------------------------+
+         | Field                | Description                                                                    |
+         +======================+================================================================================+
+         | remote_addr          | Client IP address.                                                             |
+         +----------------------+--------------------------------------------------------------------------------+
+         | remote_user          | Client username.                                                               |
+         +----------------------+--------------------------------------------------------------------------------+
+         | time_local           | Server time, which must be enclosed in brackets ([]).                          |
+         +----------------------+--------------------------------------------------------------------------------+
+         | request              | Request URL and HTTP protocol                                                  |
+         +----------------------+--------------------------------------------------------------------------------+
+         | status               | Request status.                                                                |
+         +----------------------+--------------------------------------------------------------------------------+
+         | body_bytes_sent      | Number of bytes sent to the client, excluding the size of the response header. |
+         +----------------------+--------------------------------------------------------------------------------+
+         | http_referer         | Source page URL.                                                               |
+         +----------------------+--------------------------------------------------------------------------------+
+         | http_user_agent      | Client browser information.                                                    |
+         +----------------------+--------------------------------------------------------------------------------+
+         | http_x_forwarded_for | Real IP address of the client forwarded by the proxy server.                   |
+         +----------------------+--------------------------------------------------------------------------------+
+
+      .. _lts_0823__en-us_topic_0000001532627437_table18924320134315:
+
+      .. table:: **Table 3** Extended fields
+
+         +------------------------+-------------------------------------------------------------------------------------------------+
+         | Field                  | Description                                                                                     |
+         +========================+=================================================================================================+
+         | request_time           | Total time of the entire request, in seconds (accurate to milliseconds).                        |
+         +------------------------+-------------------------------------------------------------------------------------------------+
+         | upstream_response_time | Backend server response time.                                                                   |
+         +------------------------+-------------------------------------------------------------------------------------------------+
+         | http_cookie            | Cookie data sent by the client.                                                                 |
+         +------------------------+-------------------------------------------------------------------------------------------------+
+         | http_x_real_ip         | Real IP address of the client.                                                                  |
+         +------------------------+-------------------------------------------------------------------------------------------------+
+         | uri                    | Request URI, for example, **/index.html**.                                                      |
+         +------------------------+-------------------------------------------------------------------------------------------------+
+         | args                   | Parameters in the request line, for example, **?param1=value1&param2=value2**.                  |
+         +------------------------+-------------------------------------------------------------------------------------------------+
+         | content_length         | The **Content-Length** field in the request header.                                             |
+         +------------------------+-------------------------------------------------------------------------------------------------+
+         | content_type           | The **Content-Type** field in the request header.                                               |
+         +------------------------+-------------------------------------------------------------------------------------------------+
+         | host                   | The **Host** field in the request header, or the name of the server that processes the request. |
+         +------------------------+-------------------------------------------------------------------------------------------------+
+         | server_addr            | Server IP address.                                                                              |
+         +------------------------+-------------------------------------------------------------------------------------------------+
+         | server_name            | Server name.                                                                                    |
+         +------------------------+-------------------------------------------------------------------------------------------------+
+         | server_port            | Server port.                                                                                    |
+         +------------------------+-------------------------------------------------------------------------------------------------+
+         | server_protocol        | Protocol version used by the server to send responses to the client, for example, **HTTP/1.1**. |
+         +------------------------+-------------------------------------------------------------------------------------------------+
+         | scheme                 | Request protocol, for example, **http** or **https**.                                           |
+         +------------------------+-------------------------------------------------------------------------------------------------+
+
    -  You can also customize a format. The format must meet the following requirements:
 
-      -  Cannot be blank.
+      -  Must be configured using Nginx and cannot be empty.
       -  Must start with **log_format** and contain apostrophes (') and field names.
-      -  Can contain up to 5000 characters.
+      -  Can contain up to 5,000 characters.
       -  Must match the sample log event.
-      -  Any character except letters, digits, underscores (_), and hyphens (-) can be used to separate fields.
+      -  Any character except letters, digits, underscores (_), and hyphens (-) can be used to separate the **log_format** fields.
       -  Must end with an apostrophe (') or an apostrophe plus a semicolon (';).
 
 3. Extract fields. Extract fields from the log event. Extracted fields are shown with their example values.
 
-   Enter the following sample raw logs in the text box.
+   Enter the following sample raw log in the text box and click **Intelligent Extraction**.
 
    .. code-block::
 
-      39.149.31.187 - - [12/Mar/2020:12:24:02 +0800] "GET / HTTP/1.1" 304 0 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.132 Safari/537.36" "-"
+      172.16.0.1 - alice [10/Oct/2023:14:30:45 +0800] "GET /api/users HTTP/1.1" 200 1234 "https://example.com/refer" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36" "192.168.1.100"
 
-   Configure the following Nginx log format in **Step 2**:
+   Configure the following Nginx log format in **Step 2**.
 
    .. code-block::
 
@@ -223,9 +301,7 @@ You can customize the format of access logs by the **log_format** command.
                                   '$status $body_bytes_sent "$http_referer" '
                                   '"$http_user_agent" "$http_x_forwarded_for"';
 
-   Click **Intelligent Extraction** under **Step 3**.
-
-   After fields are extracted, check and edit the fields and save them as a template if needed. For details about rules for configuring extracted fields, see :ref:`Setting Structured Fields <lts_0825__en-us_topic_0000001481908120_section13954165812210>`.
+   After fields are extracted, check and edit the fields and save them as a template if needed. For details about rules for configuring structured fields, see :ref:`Setting Structured Fields <lts_0825__en-us_topic_0000001481908120_section13954165812210>`.
 
    -  The **float** data type has seven digit precision.
    -  If a value contains more than seven valid digits, the extracted content is incorrect, which affects quick analysis. In this case, you are advised to change the field type to **string**.
@@ -239,10 +315,9 @@ You can customize the format of access logs by the **log_format** command.
 Structuring Template
 --------------------
 
-A structuring template extracts fields from either a customized template or a built-in template.
+This mode extracts fields using a custom template or a system template.
 
 For details, see :ref:`Setting a Structuring Template <lts_0824>`.
 
-.. |image1| image:: /_static/images/en-us_image_0000001960165240.png
-.. |image2| image:: /_static/images/en-us_image_0000001996772965.png
-.. |image3| image:: /_static/images/en-us_image_0000001960332596.png
+.. |image1| image:: /_static/images/en-us_image_0000001996772965.png
+.. |image2| image:: /_static/images/en-us_image_0000001960332596.png
